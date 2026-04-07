@@ -4,6 +4,7 @@ export interface Property {
   price: number
   location: string
   type: string
+  operation?: string
   status: string
   description: string
   images: string
@@ -30,6 +31,7 @@ export interface Property {
 
 export interface PropertyFilters {
   type?: string
+  operation?: string
   status?: string
   minPrice?: number
   maxPrice?: number
@@ -40,6 +42,7 @@ export interface PropertyFormData {
   price: string
   location: string
   type: string
+  operation: string
   status: string
   description: string
   images: string

@@ -6,6 +6,7 @@ export type PropertyRow = {
   price: number
   location: string
   type: string
+  operation: string | null
   status: string
   description: string
   images: string
@@ -37,6 +38,7 @@ export function rowToProperty(r: PropertyRow): Property {
     price: r.price,
     location: r.location,
     type: r.type,
+    operation: r.operation || 'venta',
     status: r.status,
     description: r.description,
     images: r.images,
@@ -72,6 +74,7 @@ export type PropertyInsert = {
   price: number
   location: string
   type: string
+  operation: string
   status: string
   description: string
   images: string
@@ -99,6 +102,7 @@ export function bodyToInsert(body: {
   price: string | number
   location: string
   type: string
+  operation?: string
   status?: string
   description: string
   images: string | string[]
@@ -126,6 +130,7 @@ export function bodyToInsert(body: {
     price: typeof body.price === 'number' ? body.price : parseFloat(String(body.price)),
     location: body.location,
     type: body.type,
+    operation: body.operation || 'venta',
     status: body.status || 'disponible',
     description: body.description,
     images: imagesStr,

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { createPublicSupabase } from '@/lib/supabase/public-server'
 import { rowToProperty, type PropertyRow } from '@/lib/property-db'
-import { formatPrice, parseImages, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
+import { formatPrice, OPERATION_LABELS, parseImages, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
 import { cn } from '@/lib/utils'
 
 export const dynamic = 'force-dynamic'
@@ -140,6 +140,9 @@ export default async function PropertyDetailPage({
                 <span className="text-xs bg-stone-100 text-stone-600 px-2.5 py-1">
                   {TYPE_LABELS[property.type] || property.type}
                 </span>
+                <span className="text-xs bg-stone-100 text-stone-600 px-2.5 py-1">
+                  {OPERATION_LABELS[property.operation || 'venta'] || property.operation || 'Venta'}
+                </span>
               </div>
 
               <h1 className="font-display text-3xl font-light text-stone-900 leading-tight mb-2">
@@ -154,7 +157,7 @@ export default async function PropertyDetailPage({
               <div className="bg-stone-50 border border-stone-200 p-6 mb-6">
                 <p className="text-xs text-stone-400 tracking-widest uppercase mb-1">Precio</p>
                 <p className="font-display text-4xl font-light text-stone-900">
-                  {formatPrice(property.price)}
+                  {formatPrice(property.price, property.operation)}
                 </p>
               </div>
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Property } from '@/types'
-import { formatPrice, PROPERTY_STATUSES, PROPERTY_TYPES, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
+import { formatPrice, OPERATION_LABELS, PROPERTY_OPERATIONS, PROPERTY_STATUSES, PROPERTY_TYPES, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
 import { cn } from '@/lib/utils'
 
 type ImageItem =
@@ -38,6 +38,7 @@ const emptyForm = {
   price: '',
   location: '',
   type: 'piso',
+  operation: 'venta',
   status: 'disponible',
   description: '',
   fotocasaUrl: '',
@@ -150,6 +151,7 @@ export default function AdminPage() {
       price: p.price.toString(),
       location: p.location,
       type: p.type,
+      operation: p.operation || 'venta',
       status: p.status,
       description: p.description,
       fotocasaUrl: p.fotocasaUrl || '',
@@ -410,6 +412,16 @@ export default function AdminPage() {
               </div>
 
               <div>
+                <label className="text-xs text-stone-500 block mb-1.5">Operación</label>
+                <select name="operation" value={form.operation} onChange={handleChange}
+                  className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900 bg-white">
+                  {PROPERTY_OPERATIONS.map(op => (
+                    <option key={op} value={op}>{OPERATION_LABELS[op]}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
                 <label className="text-xs text-stone-500 block mb-1.5">Estado</label>
                 <select name="status" value={form.status} onChange={handleChange}
                   className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900 bg-white">
@@ -625,7 +637,7 @@ export default function AdminPage() {
             <table className="w-full text-sm">
               <thead className="bg-stone-50 border-b border-stone-200">
                 <tr>
-                  {['Título', 'Precio', 'Tipo', 'Estado', 'Ubicación', 'Dest.', 'Acciones'].map(h => (
+                  {['Título', 'Precio', 'Operación', 'Tipo', 'Estado', 'Ubicación', 'Dest.', 'Acciones'].map(h => (
                     <th key={h} className="text-left text-xs text-stone-500 font-medium px-4 py-3 tracking-wide">
                       {h}
                     </th>
@@ -641,7 +653,10 @@ export default function AdminPage() {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-stone-600 whitespace-nowrap">
-                      {formatPrice(p.price)}
+                      {formatPrice(p.price, p.operation)}
+                    </td>
+                    <td className="px-4 py-3 text-stone-500">
+                      {OPERATION_LABELS[p.operation || 'venta'] || p.operation || 'Venta'}
                     </td>
                     <td className="px-4 py-3 text-stone-500">
                       {TYPE_LABELS[p.type] || p.type}

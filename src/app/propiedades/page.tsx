@@ -8,6 +8,7 @@ export const dynamic = 'force-dynamic'
 
 interface SearchParams {
   type?: string
+  operation?: string
   status?: string
   minPrice?: string
   maxPrice?: string
@@ -18,6 +19,7 @@ async function getProperties(searchParams: SearchParams) {
   let q = supabase.from('properties').select('*').order('created_at', { ascending: false })
 
   if (searchParams.type) q = q.eq('type', searchParams.type)
+  if (searchParams.operation) q = q.eq('operation', searchParams.operation)
   if (searchParams.status) q = q.eq('status', searchParams.status)
   if (searchParams.minPrice) q = q.gte('price', parseFloat(searchParams.minPrice))
   if (searchParams.maxPrice) q = q.lte('price', parseFloat(searchParams.maxPrice))

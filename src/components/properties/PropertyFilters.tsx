@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
-import { PROPERTY_TYPES, PROPERTY_STATUSES, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
+import { PROPERTY_TYPES, PROPERTY_OPERATIONS, PROPERTY_STATUSES, OPERATION_LABELS, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
 import { cn } from '@/lib/utils'
 
 export function PropertyFilters() {
@@ -10,6 +10,7 @@ export function PropertyFilters() {
   const searchParams = useSearchParams()
 
   const type = searchParams.get('type') || ''
+  const operation = searchParams.get('operation') || ''
   const status = searchParams.get('status') || ''
   const minPrice = searchParams.get('minPrice') || ''
   const maxPrice = searchParams.get('maxPrice') || ''
@@ -28,7 +29,7 @@ export function PropertyFilters() {
     router.push('/propiedades')
   }
 
-  const hasFilters = type || status || minPrice || maxPrice
+  const hasFilters = type || operation || status || minPrice || maxPrice
 
   return (
     <div className="bg-stone-50 border border-stone-200 p-6 space-y-5">
@@ -57,6 +58,27 @@ export function PropertyFilters() {
               )}
             >
               {TYPE_LABELS[t]}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Operación */}
+      <div>
+        <label className="text-xs text-stone-500 mb-2 block">Operación</label>
+        <div className="flex flex-wrap gap-2">
+          {PROPERTY_OPERATIONS.map((op) => (
+            <button
+              key={op}
+              onClick={() => updateParam('operation', operation === op ? '' : op)}
+              className={cn(
+                'text-xs px-3 py-1.5 border transition-colors duration-150',
+                operation === op
+                  ? 'bg-stone-900 text-white border-stone-900'
+                  : 'border-stone-200 text-stone-600 hover:border-stone-400'
+              )}
+            >
+              {OPERATION_LABELS[op]}
             </button>
           ))}
         </div>

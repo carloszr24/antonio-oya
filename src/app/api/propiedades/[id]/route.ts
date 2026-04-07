@@ -31,7 +31,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   try {
     const body = await request.json()
     const {
-      title, price, location, type, status, description,
+      title, price, location, type, operation, status, description,
       images, fotocasaUrl, bedrooms, bathrooms, sqMeters, featured,
       availability, hotWater, heating, condition, propertyAge,
       garage, elevator, furnished, energyRating, energyValue,
@@ -43,6 +43,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       price,
       location,
       type,
+      operation,
       status,
       description,
       images,

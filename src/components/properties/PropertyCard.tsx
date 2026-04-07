@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Property } from '@/types'
-import { formatPrice, parseImages, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
+import { formatPrice, OPERATION_LABELS, parseImages, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
 import { cn } from '@/lib/utils'
 
 interface PropertyCardProps {
@@ -68,13 +68,16 @@ export function PropertyCard({ property }: PropertyCardProps) {
               <span className="ml-auto text-xs bg-stone-100 px-2 py-0.5 text-stone-600">
                 {TYPE_LABELS[property.type] || property.type}
               </span>
+              <span className="text-xs bg-stone-100 px-2 py-0.5 text-stone-600">
+                {OPERATION_LABELS[property.operation || 'venta'] || property.operation || 'Venta'}
+              </span>
             </div>
           )}
 
           {/* Price */}
           <div className="flex items-center justify-between">
             <span className="font-display text-xl font-medium text-stone-900">
-              {formatPrice(property.price)}
+              {formatPrice(property.price, property.operation)}
             </span>
             <span className="text-xs text-gold group-hover:translate-x-1 transition-transform inline-block">
               Ver →

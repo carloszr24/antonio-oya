@@ -5,12 +5,13 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatPrice(price: number): string {
-  return new Intl.NumberFormat('es-ES', {
+export function formatPrice(price: number, operation?: string): string {
+  const base = new Intl.NumberFormat('es-ES', {
     style: 'currency',
     currency: 'EUR',
     maximumFractionDigits: 0,
   }).format(price)
+  return operation === 'alquiler' ? `${base}/mes` : base
 }
 
 export function parseImages(images: string): string[] {
@@ -22,6 +23,7 @@ export function parseImages(images: string): string[] {
 }
 
 export const PROPERTY_TYPES = ['piso', 'casa', 'local', 'terreno', 'oficina'] as const
+export const PROPERTY_OPERATIONS = ['venta', 'alquiler'] as const
 export const PROPERTY_STATUSES = ['disponible', 'reservado', 'vendido'] as const
 
 export const STATUS_LABELS: Record<string, string> = {
@@ -36,4 +38,9 @@ export const TYPE_LABELS: Record<string, string> = {
   local: 'Local',
   terreno: 'Terreno',
   oficina: 'Oficina',
+}
+
+export const OPERATION_LABELS: Record<string, string> = {
+  venta: 'Venta',
+  alquiler: 'Alquiler',
 }
