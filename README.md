@@ -16,6 +16,7 @@ npm install
 
 1. Crea un proyecto en [Supabase](https://supabase.com).
 2. **SQL Editor** → pega y ejecuta el contenido de [`supabase/migrations/20260407120000_properties.sql`](supabase/migrations/20260407120000_properties.sql).
+3. **Storage** → crea un bucket llamado **`property-images`** y márcalo como **Public** (para fotos de propiedades).
 
 ### 3. Variables de entorno
 

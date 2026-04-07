@@ -5,6 +5,34 @@ import { Property } from '@/types'
 import { formatPrice, PROPERTY_STATUSES, PROPERTY_TYPES, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
 import { cn } from '@/lib/utils'
 
+type ImageItem =
+  | { id: string; kind: 'existing'; url: string }
+  | { id: string; kind: 'new'; file: File; previewUrl: string }
+
+function safeParseImages(images: string): string[] {
+  try {
+    const parsed = JSON.parse(images)
+    return Array.isArray(parsed) ? parsed.map(String) : []
+  } catch {
+    return images
+      .split('\n')
+      .map((s) => s.trim())
+      .filter(Boolean)
+  }
+}
+
+function isSupabasePublicUrl(url: string): boolean {
+  return url.includes('/storage/v1/object/public/property-images/')
+}
+
+function supabasePathFromPublicUrl(url: string): string | null {
+  // https://<ref>.supabase.co/storage/v1/object/public/property-images/<path>
+  const marker = '/storage/v1/object/public/property-images/'
+  const idx = url.indexOf(marker)
+  if (idx === -1) return null
+  return url.slice(idx + marker.length)
+}
+
 const emptyForm = {
   title: '',
   price: '',
@@ -12,7 +40,6 @@ const emptyForm = {
   type: 'piso',
   status: 'disponible',
   description: '',
-  images: '',
   fotocasaUrl: '',
   bedrooms: '',
   bathrooms: '',
@@ -36,6 +63,8 @@ export default function AdminPage() {
   const [showForm, setShowForm] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [form, setForm] = useState(emptyForm)
+  const [imageItems, setImageItems] = useState<ImageItem[]>([])
+  const [initialImageUrls, setInitialImageUrls] = useState<string[]>([])
   const [saving, setSaving] = useState(false)
   const [deleteId, setDeleteId] = useState<string | null>(null)
 
@@ -97,11 +126,13 @@ export default function AdminPage() {
   const openCreate = () => {
     setForm(emptyForm)
     setEditingId(null)
+    setImageItems([])
+    setInitialImageUrls([])
     setShowForm(true)
   }
 
   const openEdit = (p: Property) => {
-    const imgs = (() => { try { return JSON.parse(p.images).join('\n') } catch { return p.images } })()
+    const urls = safeParseImages(p.images)
     setForm({
       title: p.title,
       price: p.price.toString(),
@@ -109,7 +140,6 @@ export default function AdminPage() {
       type: p.type,
       status: p.status,
       description: p.description,
-      images: imgs,
       fotocasaUrl: p.fotocasaUrl || '',
       bedrooms: p.bedrooms?.toString() || '',
       bathrooms: p.bathrooms?.toString() || '',
@@ -117,24 +147,133 @@ export default function AdminPage() {
       featured: p.featured,
     })
     setEditingId(p.id)
+    setInitialImageUrls(urls)
+    setImageItems(urls.map((url) => ({ id: crypto.randomUUID(), kind: 'existing', url })))
     setShowForm(true)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const addFiles = (files: FileList | null) => {
+    if (!files || files.length === 0) return
+    const allowed = new Set(['image/jpeg', 'image/png', 'image/webp'])
+    const maxBytes = 5 * 1024 * 1024
+    const next: ImageItem[] = []
+    for (const f of Array.from(files)) {
+      if (!allowed.has(f.type)) continue
+      if (f.size > maxBytes) continue
+      next.push({ id: crypto.randomUUID(), kind: 'new', file: f, previewUrl: URL.createObjectURL(f) })
+    }
+    if (next.length) setImageItems((prev) => [...prev, ...next].slice(0, 15))
+  }
+
+  const removeItem = async (id: string) => {
+    const item = imageItems.find((x) => x.id === id)
+    if (!item) return
+    if (item.kind === 'new') {
+      URL.revokeObjectURL(item.previewUrl)
+    }
+    setImageItems((prev) => prev.filter((x) => x.id !== id))
+  }
+
+  const moveItem = (from: number, to: number) => {
+    setImageItems((prev) => {
+      const next = [...prev]
+      const [it] = next.splice(from, 1)
+      next.splice(to, 0, it)
+      return next
+    })
+  }
+
+  const uploadNewImages = async (propertyId: string) => {
+    const results: { id: string; url: string }[] = []
+    for (const item of imageItems) {
+      if (item.kind !== 'new') continue
+      const fd = new FormData()
+      fd.append('file', item.file)
+      const res = await fetch(`/api/uploads/property-image?propertyId=${encodeURIComponent(propertyId)}`, {
+        method: 'POST',
+        credentials: 'include',
+        body: fd,
+      })
+      if (!res.ok) {
+        throw new Error('Error al subir imagen')
+      }
+      const data = await res.json() as { url: string }
+      results.push({ id: item.id, url: data.url })
+    }
+    return results
+  }
+
+  const deleteRemovedImages = async (finalUrls: string[]) => {
+    const removed = initialImageUrls.filter((u) => !finalUrls.includes(u))
+    for (const url of removed) {
+      if (!isSupabasePublicUrl(url)) continue
+      const path = supabasePathFromPublicUrl(url)
+      if (!path) continue
+      await fetch('/api/uploads/property-image', {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path }),
+      })
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSaving(true)
     try {
-      const imagesArray = form.images.split('\n').map(s => s.trim()).filter(Boolean)
-      const payload = { ...form, images: imagesArray }
-      const url = editingId ? `/api/propiedades/${editingId}` : '/api/propiedades'
-      const method = editingId ? 'PUT' : 'POST'
-      await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(payload),
-      })
+      const existingUrlsInOrder = imageItems
+        .filter((i): i is Extract<ImageItem, { kind: 'existing' }> => i.kind === 'existing')
+        .map((i) => i.url)
+
+      // 1) Crear/actualizar propiedad (sin nuevas imágenes aún)
+      if (!editingId) {
+        const createRes = await fetch('/api/propiedades', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ ...form, images: existingUrlsInOrder }),
+        })
+        if (!createRes.ok) throw new Error('Error al crear propiedad')
+        const created = await createRes.json() as { id: string }
+        const propertyId = created.id
+
+        // 2) Subir imágenes nuevas y actualizar orden final
+        const uploaded = await uploadNewImages(propertyId)
+        const finalUrls = imageItems.map((it) => {
+          if (it.kind === 'existing') return it.url
+          const match = uploaded.find((u) => u.id === it.id)
+          return match?.url || ''
+        }).filter(Boolean)
+
+        await fetch(`/api/propiedades/${propertyId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ ...form, images: finalUrls }),
+        })
+      } else {
+        const propertyId = editingId
+
+        // Subir nuevas primero
+        const uploaded = await uploadNewImages(propertyId)
+        const finalUrls = imageItems.map((it) => {
+          if (it.kind === 'existing') return it.url
+          const match = uploaded.find((u) => u.id === it.id)
+          return match?.url || ''
+        }).filter(Boolean)
+
+        await fetch(`/api/propiedades/${propertyId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ ...form, images: finalUrls }),
+        })
+
+        await deleteRemovedImages(finalUrls)
+      }
+
       setShowForm(false)
       setEditingId(null)
       await fetchProperties()
@@ -288,12 +427,71 @@ export default function AdminPage() {
               </div>
 
               <div className="md:col-span-2">
-                <label className="text-xs text-stone-500 block mb-1.5">
-                  URLs de imágenes <span className="text-stone-400">(una por línea)</span>
-                </label>
-                <textarea name="images" value={form.images} onChange={handleChange} rows={3}
-                  placeholder="https://images.unsplash.com/..."
-                  className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900 resize-none font-mono" />
+                <label className="text-xs text-stone-500 block mb-2">Imágenes</label>
+                <div className="border border-stone-200 p-4 space-y-3">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="text-xs text-stone-400">
+                      Sube hasta 15 imágenes (JPG/PNG/WebP, máx. 5MB). Arrastra para reordenar.
+                    </div>
+                    <label className="btn-outline text-[11px] px-4 py-2 cursor-pointer">
+                      + Añadir fotos
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        multiple
+                        className="hidden"
+                        onChange={(e) => addFiles(e.target.files)}
+                      />
+                    </label>
+                  </div>
+
+                  {imageItems.length === 0 ? (
+                    <div className="text-sm text-stone-400 py-6 text-center">
+                      No hay imágenes aún.
+                    </div>
+                  ) : (
+                    <ul className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {imageItems.map((item, idx) => {
+                        const preview = item.kind === 'existing' ? item.url : item.previewUrl
+                        return (
+                          <li
+                            key={item.id}
+                            className="border border-stone-200 bg-stone-50"
+                            draggable
+                            onDragStart={(e) => {
+                              e.dataTransfer.setData('text/plain', String(idx))
+                            }}
+                            onDragOver={(e) => e.preventDefault()}
+                            onDrop={(e) => {
+                              e.preventDefault()
+                              const from = Number(e.dataTransfer.getData('text/plain'))
+                              if (!Number.isFinite(from)) return
+                              if (from === idx) return
+                              moveItem(from, idx)
+                            }}
+                          >
+                            <div className="relative aspect-[4/3] overflow-hidden">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={preview} alt="" className="h-full w-full object-cover" />
+                              <button
+                                type="button"
+                                onClick={() => removeItem(item.id)}
+                                className="absolute top-2 right-2 bg-white/90 hover:bg-white text-stone-700 text-xs px-2 py-1 border border-stone-200"
+                              >
+                                Quitar
+                              </button>
+                              {idx === 0 && (
+                                <span className="absolute bottom-2 left-2 bg-gold text-white text-[10px] px-2 py-1">
+                                  Principal
+                                </span>
+                              )}
+                            </div>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )}
+                </div>
               </div>
 
               <div className="flex items-center gap-3">
