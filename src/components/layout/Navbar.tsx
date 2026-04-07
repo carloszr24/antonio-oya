@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
@@ -23,9 +24,14 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
-            <span className="font-display text-xl font-medium tracking-wide text-stone-900">
-              Pleno<span className="text-gold">Casa</span>
-            </span>
+            <Image
+              src="/images/logo-AP.png"
+              alt="AP Real Estate"
+              width={140}
+              height={36}
+              priority
+              className="h-9 w-auto"
+            />
           </Link>
 
           {/* Desktop nav */}
