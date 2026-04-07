@@ -1,6 +1,6 @@
 export const brand = {
   name: 'Antonio Oya',
-  businessName: 'Inmobiliaria Mancha Real Antonio Oya',
+  businessName: 'Inmobiliaria Antonio Oya',
   location: 'Mancha Real (Jaen)',
   claim:
     'Lider en ventas. Si quieres comprar o vender estamos aqui para asesorarte. Compraventa de fincas rusticas y urbanas. Tasaciones.',
@@ -14,9 +14,9 @@ export const brand = {
     { name: 'LinkedIn', href: '#' },
   ],
   seo: {
-    title: 'Antonio Oya | Inmobiliaria en Mancha Real (Jaen)',
+    title: 'Inmobiliaria Antonio Oya | Inmobiliaria en Mancha Real (Jaen)',
     description:
-      'Inmobiliaria Mancha Real Antonio Oya. Lider en ventas en Mancha Real (Jaen). Compraventa de fincas rusticas y urbanas, tasaciones y asesoramiento.',
+      'Inmobiliaria Antonio Oya. Lider en ventas en Mancha Real (Jaen). Compraventa de fincas rusticas y urbanas, tasaciones y asesoramiento.',
     keywords:
       'inmobiliaria mancha real, antonio oya, jaen, fincas rusticas, fincas urbanas, compraventa, tasaciones',
   },
