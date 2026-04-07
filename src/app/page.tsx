@@ -43,13 +43,13 @@ export default async function HomePage() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1800"
-            alt="Propiedad de lujo"
+            src="/images/Hero-Almeria.jpg"
+            alt="Viviendas en Almería"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-stone-950/55" />
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/70 via-stone-950/55 to-stone-950/75" />
         </div>
 
         {/* Content */}
