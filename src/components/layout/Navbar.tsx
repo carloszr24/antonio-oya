@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { brand } from '@/lib/brand'
 
 const links = [
   { href: '/propiedades', label: 'Propiedades' },
@@ -25,12 +26,12 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
             <Image
-              src="/images/logo-AP.png"
-              alt="AP Real Estate"
-              width={140}
-              height={36}
+              src={brand.logo.src}
+              alt={brand.logo.alt}
+              width={160}
+              height={44}
               priority
-              className="h-9 w-auto"
+              className="h-10 w-auto"
             />
           </Link>
 

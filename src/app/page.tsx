@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { createPublicSupabase } from '@/lib/supabase/public-server'
 import { rowsToProperties, type PropertyRow } from '@/lib/property-db'
 import { PropertyCard } from '@/components/properties/PropertyCard'
-import { formatPrice } from '@/lib/utils'
+import { brand } from '@/lib/brand'
 
 export const dynamic = 'force-dynamic'
 
@@ -31,7 +31,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/Hero-Almeria.jpg"
-            alt="Viviendas en Almería"
+            alt={`Viviendas en ${brand.location}`}
             fill
             className="object-cover"
             priority
@@ -42,11 +42,11 @@ export default async function HomePage() {
         {/* Content */}
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <h1 className="font-display text-5xl md:text-7xl font-light text-white leading-[1.1] mb-8 animate-fade-up">
-            Tu hogar ideal,<br />
-            <span className="italic">donde lo imaginas</span>
+            {brand.businessName}<br />
+            <span className="italic">lider en ventas</span>
           </h1>
           <p className="text-stone-300 text-lg font-light max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up" style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}>
-            Gestionamos arrendamientos y ventas de viviendas propias y de particulares.
+            Si quieres comprar o vender, estamos aqui para asesorarte en cada paso.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
             <Link href="/propiedades" className="btn-gold px-10 py-4 text-sm tracking-wide">
@@ -92,18 +92,18 @@ export default async function HomePage() {
             {[
               {
                 icon: '🏡',
-                title: 'Compra y venta',
-                desc: 'Asesoramiento experto en todas las fases de la transacción.',
+                title: 'Compraventa',
+                desc: 'Fincas rusticas y urbanas con acompanamiento de principio a fin.',
               },
               {
                 icon: '📋',
-                title: 'Valoración gratuita',
-                desc: 'Conoce el valor real de tu propiedad sin compromiso.',
+                title: 'Tasaciones',
+                desc: 'Valoracion realista de mercado para vender o comprar con seguridad.',
               },
               {
                 icon: '🤝',
-                title: 'Gestión integral',
-                desc: 'Nos encargamos de todo: notaría, hipoteca y trámites.',
+                title: 'Asesoramiento cercano',
+                desc: 'Te guiamos de forma clara, honesta y directa durante toda la operacion.',
               },
             ].map((item) => (
               <div key={item.title} className="p-8 bg-white border border-stone-100 hover:border-gold transition-colors duration-300">
@@ -121,7 +121,7 @@ export default async function HomePage() {
         <div className="max-w-2xl mx-auto">
           <h2 className="section-title mb-6">¿Listo para encontrar<br />tu próximo hogar?</h2>
           <p className="section-subtitle mb-10">
-            Cuéntanos qué buscas y nuestro equipo te ayudará a encontrarlo.
+            Cuentanos que buscas y te ayudamos a dar el siguiente paso en {brand.location}.
           </p>
           <Link href="/contacto" className="btn-primary px-12 py-4 text-sm tracking-wide">
             Hablar con un asesor

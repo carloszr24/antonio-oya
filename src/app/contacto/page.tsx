@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { brand } from '@/lib/brand'
 
 export default function ContactoPage() {
   const [form, setForm] = useState({ nombre: '', email: '', telefono: '', mensaje: '' })
@@ -28,7 +29,7 @@ export default function ContactoPage() {
           <p className="text-gold text-xs tracking-[0.3em] uppercase mb-4">Estamos aquí</p>
           <h1 className="font-display text-5xl md:text-6xl font-light">Contacto</h1>
           <p className="text-stone-400 mt-4 text-lg font-light max-w-md">
-            Escríbenos o llámanos. Respondemos en menos de 24 horas.
+            Escribenos o llamanos. Si quieres comprar o vender, estamos aqui para asesorarte.
           </p>
         </div>
       </div>
@@ -126,9 +127,9 @@ export default function ContactoPage() {
               <h2 className="font-display text-3xl font-light text-stone-900 mb-8">Información</h2>
               <div className="space-y-6">
                 {[
-                  { icon: '📍', label: 'Dirección', value: 'Av. de la Estación, 25, 7º 3 B\n04005 Almería' },
-                  { icon: '📞', label: 'Teléfono', value: '950 79 02 17' },
-                  { icon: '✉️', label: 'Email', value: 'adm.ap.servicios.inmobiliarios@gmail.com' },
+                  { icon: '📍', label: 'Direccion', value: brand.addressLine },
+                  { icon: '📞', label: 'Telefono', value: brand.phoneDisplay },
+                  { icon: '✉️', label: 'Email', value: brand.email },
                   { icon: '🕐', label: 'Horario', value: 'Lun–Vie: 9:30–14:00 · 17:00–20:00\nSáb–Dom: Cerrado' },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-4">
@@ -146,11 +147,7 @@ export default function ContactoPage() {
             <div className="border-t border-stone-100 pt-8">
               <p className="text-xs text-stone-400 tracking-widest uppercase mb-4">Redes sociales</p>
               <div className="flex gap-4">
-                {[
-                  { name: 'Instagram', href: '#' },
-                  { name: 'Facebook', href: '#' },
-                  { name: 'LinkedIn', href: '#' },
-                ].map((social) => (
+                {brand.socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.href}

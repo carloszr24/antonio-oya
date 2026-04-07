@@ -1,54 +1,45 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { brand } from '@/lib/brand'
 
 const services = [
   {
     icon: '🏠',
     title: 'Compra y venta',
-    desc: 'Gestionamos todo el proceso de compraventa, desde la búsqueda hasta la firma en notaría. Negociamos en tu nombre para obtener las mejores condiciones.',
+    desc: 'Gestionamos compraventa de fincas rusticas y urbanas con asesoramiento personalizado.',
   },
   {
     icon: '📊',
-    title: 'Valoración de inmuebles',
-    desc: 'Estudio de mercado riguroso para conocer el precio real de tu propiedad. Sin compromisos, con total transparencia.',
+    title: 'Tasaciones',
+    desc: 'Valoramos tu inmueble con criterio de mercado para ayudarte a tomar buenas decisiones.',
   },
   {
     icon: '💼',
-    title: 'Asesoramiento jurídico',
-    desc: 'Revisión de contratos, verificación registral y acompañamiento legal en todo el proceso. Tu seguridad es nuestra prioridad.',
+    title: 'Asesoramiento completo',
+    desc: 'Te acompanamos en todo el proceso de compra o venta con un trato cercano y transparente.',
   },
   {
     icon: '🔑',
-    title: 'Gestión post-venta',
-    desc: 'Nuestro servicio no termina con la firma. Te ayudamos con cambios de suministros, reformas y cualquier gestión posterior.',
+    title: 'Gestion de operaciones',
+    desc: 'Coordinamos tramites y pasos clave para que la operacion sea agil y segura.',
   },
   {
     icon: '🏦',
-    title: 'Financiación',
-    desc: 'Colaboramos con las principales entidades bancarias para conseguirte la mejor hipoteca adaptada a tu situación.',
+    title: 'Venta con estrategia',
+    desc: 'Definimos una estrategia de comercializacion para vender en el mejor tiempo posible.',
   },
   {
-    icon: '🌐',
-    title: 'Inversión internacional',
-    desc: 'Asesoramiento especializado para compradores internacionales. Servicios en español, inglés y francés.',
+    icon: '🤝',
+    title: 'Atencion cercana',
+    desc: 'Si quieres comprar o vender, estamos aqui para asesorarte en cada etapa.',
   },
 ]
 
 const team = [
   {
-    name: 'María González',
-    role: 'Directora comercial',
+    name: 'Antonio Oya',
+    role: 'Asesor inmobiliario',
     img: 'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=400',
-  },
-  {
-    name: 'Carlos Fernández',
-    role: 'Agente senior',
-    img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400',
-  },
-  {
-    name: 'Laura Martínez',
-    role: 'Asesora jurídica',
-    img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400',
   },
 ]
 
@@ -61,19 +52,17 @@ export default function SobreNosotrosPage() {
           <div>
             <p className="text-gold text-xs tracking-[0.3em] uppercase mb-4">Quiénes somos</p>
             <h1 className="font-display text-5xl md:text-6xl font-light leading-tight mb-6">
-              Más de 15 años<br />
-              <span className="italic">transformando sueños</span><br />
-              en hogares
+              Inmobiliaria Mancha Real<br />
+              <span className="italic">Antonio Oya</span>
             </h1>
             <p className="text-stone-400 text-lg font-light leading-relaxed">
-              Somos un equipo de agentes inmobiliarios en Almería con una misión clara:
-              ofrecer un servicio cercano, honesto y completamente orientado al cliente.
+              {brand.claim}
             </p>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden">
             <Image
               src="/images/imagen-nosotros.jpg"
-              alt="Oficina AP Real Estate Services"
+              alt={`Equipo ${brand.businessName}`}
               fill
               className="object-cover"
             />
@@ -85,9 +74,9 @@ export default function SobreNosotrosPage() {
       <section className="py-24 px-6 md:px-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           {[
-            { value: 'Transparencia', desc: 'Información clara y honesta en cada paso del proceso.' },
-            { value: 'Proximidad', desc: 'Te acompañamos personalmente desde el primer contacto.' },
-            { value: 'Resultados', desc: 'Más del 95% de nuestros clientes nos recomiendan.' },
+            { value: 'Transparencia', desc: 'Informacion clara y honesta en cada paso del proceso.' },
+            { value: 'Cercania', desc: 'Te acompanamos personalmente desde el primer contacto.' },
+            { value: 'Compromiso', desc: `Trabajamos para ofrecer resultados reales en ${brand.location}.` },
           ].map((item) => (
             <div key={item.value} className="p-8">
               <div className="w-1 h-8 bg-gold mx-auto mb-6" />
@@ -150,7 +139,7 @@ export default function SobreNosotrosPage() {
       <section className="bg-stone-950 text-white py-20 px-6 md:px-10 text-center">
         <h2 className="font-display text-4xl font-light mb-6">¿Hablamos?</h2>
         <p className="text-stone-400 mb-10 max-w-md mx-auto">
-          Cuéntanos tu situación y encontraremos la mejor solución para ti.
+          Cuentanos tu situacion y encontraremos la mejor solucion para ti.
         </p>
         <Link href="/contacto" className="btn-gold px-10 py-4 text-sm">
           Contactar ahora

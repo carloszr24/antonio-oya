@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { brand } from '@/lib/brand'
 
 const sans = Inter({
   subsets: ['latin'],
@@ -16,9 +17,9 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: 'AP Real Estate Services | Inmobiliaria en Almería',
-  description: 'Gestionamos arrendamientos y ventas de viviendas propias y de particulares en Almería.',
-  keywords: 'inmobiliaria, almería, pisos, casas, locales, alquiler, venta',
+  title: brand.seo.title,
+  description: brand.seo.description,
+  keywords: brand.seo.keywords,
 }
 
 export default function RootLayout({

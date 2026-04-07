@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { brand } from '@/lib/brand'
 
 export function Footer() {
   return (
@@ -8,14 +9,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <Image
-              src="/images/logo-AP.png"
-              alt="AP Real Estate Services"
+              src={brand.logo.src}
+              alt={brand.logo.alt}
               width={230}
               height={52}
               className="h-11 w-auto"
             />
             <p className="mt-4 text-sm leading-relaxed text-stone-600 max-w-sm">
-              Gestionamos arrendamientos y ventas de viviendas propias y de particulares en Almería.
+              {brand.claim}
             </p>
           </div>
           <div>
@@ -29,19 +30,18 @@ export function Footer() {
           <div>
             <h4 className="text-stone-900 text-xs tracking-widest uppercase mb-4">Contacto</h4>
             <ul className="space-y-2 text-sm">
-              <li>Av. de la Estación, 25, 7º 3 B</li>
-              <li>04005 Almería</li>
+              <li>{brand.addressLine}</li>
               <li className="pt-1">
-                <a href="tel:+34950790217" className="hover:text-stone-900 transition-colors">950 79 02 17</a>
+                <a href={`tel:${brand.phoneHref}`} className="hover:text-stone-900 transition-colors">{brand.phoneDisplay}</a>
               </li>
               <li>
-                <a href="mailto:adm.ap.servicios.inmobiliarios@gmail.com" className="hover:text-stone-900 transition-colors">adm.ap.servicios.inmobiliarios@gmail.com</a>
+                <a href={`mailto:${brand.email}`} className="hover:text-stone-900 transition-colors">{brand.email}</a>
               </li>
             </ul>
           </div>
         </div>
         <div className="border-t border-stone-300 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500">
-          <span>© {new Date().getFullYear()} AP Real Estate Services. Todos los derechos reservados.</span>
+          <span>© {new Date().getFullYear()} {brand.businessName}. Todos los derechos reservados.</span>
           <Link href="/admin" className="hover:text-stone-900 transition-colors">Panel Admin</Link>
         </div>
       </div>
