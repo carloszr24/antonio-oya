@@ -29,7 +29,7 @@ export default function ContactoPage() {
           <p className="text-gold text-xs tracking-[0.3em] uppercase mb-4">Estamos aquí</p>
           <h1 className="font-display text-5xl md:text-6xl font-light">Contacto</h1>
           <p className="text-stone-400 mt-4 text-lg font-light max-w-md">
-            Escribenos o llamanos. Si quieres comprar o vender, estamos aqui para asesorarte.
+            Escríbenos o llámanos. Si quieres comprar o vender, estamos aquí para asesorarte.
           </p>
         </div>
       </div>
@@ -127,8 +127,8 @@ export default function ContactoPage() {
               <h2 className="font-display text-3xl font-light text-stone-900 mb-8">Información</h2>
               <div className="space-y-6">
                 {[
-                  { icon: '📍', label: 'Direccion', value: brand.addressLine },
-                  { icon: '📞', label: 'Telefono', value: brand.phoneDisplay },
+                  { icon: '📍', label: 'Dirección', value: brand.addressLine },
+                  { icon: '📞', label: 'Teléfono', value: brand.phoneDisplay },
                   { icon: '✉️', label: 'Email', value: brand.email },
                   { icon: '🕐', label: 'Horario', value: 'Lun–Vie: 9:30–14:00 · 17:00–20:00\nSáb–Dom: Cerrado' },
                 ].map((item) => (

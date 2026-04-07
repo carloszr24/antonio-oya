@@ -6,7 +6,7 @@ const services = [
   {
     icon: '🏠',
     title: 'Compra y venta',
-    desc: 'Gestionamos compraventa de fincas rusticas y urbanas con asesoramiento personalizado.',
+    desc: 'Gestionamos compraventa de fincas rústicas y urbanas con asesoramiento personalizado.',
   },
   {
     icon: '📊',
@@ -16,12 +16,12 @@ const services = [
   {
     icon: '💼',
     title: 'Asesoramiento completo',
-    desc: 'Te acompanamos en todo el proceso de compra o venta con un trato cercano y transparente.',
+    desc: 'Te acompañamos en todo el proceso de compra o venta con un trato cercano y transparente.',
   },
   {
     icon: '🔑',
-    title: 'Gestion de operaciones',
-    desc: 'Coordinamos tramites y pasos clave para que la operacion sea agil y segura.',
+    title: 'Gestión de operaciones',
+    desc: 'Coordinamos trámites y pasos clave para que la operación sea ágil y segura.',
   },
   {
     icon: '🏦',
@@ -30,8 +30,8 @@ const services = [
   },
   {
     icon: '🤝',
-    title: 'Atencion cercana',
-    desc: 'Si quieres comprar o vender, estamos aqui para asesorarte en cada etapa.',
+    title: 'Atención cercana',
+    desc: 'Si quieres comprar o vender, estamos aquí para asesorarte en cada etapa.',
   },
 ]
 
@@ -74,8 +74,8 @@ export default function SobreNosotrosPage() {
       <section className="py-24 px-6 md:px-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           {[
-            { value: 'Transparencia', desc: 'Informacion clara y honesta en cada paso del proceso.' },
-            { value: 'Cercania', desc: 'Te acompanamos personalmente desde el primer contacto.' },
+            { value: 'Transparencia', desc: 'Información clara y honesta en cada paso del proceso.' },
+            { value: 'Cercanía', desc: 'Te acompañamos personalmente desde el primer contacto.' },
             { value: 'Compromiso', desc: `Trabajamos para ofrecer resultados reales en ${brand.location}.` },
           ].map((item) => (
             <div key={item.value} className="p-8">
@@ -139,7 +139,7 @@ export default function SobreNosotrosPage() {
       <section className="bg-stone-950 text-white py-20 px-6 md:px-10 text-center">
         <h2 className="font-display text-4xl font-light mb-6">¿Hablamos?</h2>
         <p className="text-stone-400 mb-10 max-w-md mx-auto">
-          Cuentanos tu situacion y encontraremos la mejor solucion para ti.
+          Cuéntanos tu situación y encontraremos la mejor solución para ti.
         </p>
         <Link href="/contacto" className="btn-gold px-10 py-4 text-sm">
           Contactar ahora

@@ -40,13 +40,13 @@ export function HeroCarousel() {
         <h1 className="font-display text-5xl md:text-7xl font-light text-white leading-[1.1] mb-8 animate-fade-up">
           {brand.businessName}
           <br />
-          <span className="italic">lider en ventas</span>
+          <span className="italic">líder en ventas</span>
         </h1>
         <p
           className="text-stone-300 text-lg font-light max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up"
           style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}
         >
-          Si quieres comprar o vender, estamos aqui para asesorarte en cada paso.
+          Si quieres comprar o vender, estamos aquí para asesorarte en cada paso.
         </p>
         <div
           className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up"

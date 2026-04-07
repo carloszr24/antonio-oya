@@ -60,17 +60,17 @@ export default async function HomePage() {
               {
                 icon: '🏡',
                 title: 'Compraventa',
-                desc: 'Fincas rusticas y urbanas con acompanamiento de principio a fin.',
+                desc: 'Fincas rústicas y urbanas con acompañamiento de principio a fin.',
               },
               {
                 icon: '📋',
                 title: 'Tasaciones',
-                desc: 'Valoracion realista de mercado para vender o comprar con seguridad.',
+                desc: 'Valoración realista de mercado para vender o comprar con seguridad.',
               },
               {
                 icon: '🤝',
                 title: 'Asesoramiento cercano',
-                desc: 'Te guiamos de forma clara, honesta y directa durante toda la operacion.',
+                desc: 'Te guiamos de forma clara, honesta y directa durante toda la operación.',
               },
             ].map((item) => (
               <div key={item.title} className="p-8 bg-white border border-stone-100 hover:border-gold transition-colors duration-300">
@@ -88,7 +88,7 @@ export default async function HomePage() {
         <div className="max-w-2xl mx-auto">
           <h2 className="section-title mb-6">¿Listo para encontrar<br />tu próximo hogar?</h2>
           <p className="section-subtitle mb-10">
-            Cuentanos que buscas y te ayudamos a dar el siguiente paso en {brand.location}.
+            Cuéntanos qué buscas y te ayudamos a dar el siguiente paso en {brand.location}.
           </p>
           <Link href="/contacto" className="btn-primary px-12 py-4 text-sm tracking-wide">
             Hablar con un asesor
