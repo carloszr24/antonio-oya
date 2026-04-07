@@ -33,6 +33,31 @@ export default async function PropertyDetailPage({
 
   const images = parseImages(property.images)
   const mainImage = images[0] || 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200'
+  const featureItems = [
+    { label: 'Tipo de inmueble', value: TYPE_LABELS[property.type] || property.type },
+    { label: 'Disponibilidad', value: property.availability },
+    { label: 'Agua caliente', value: property.hotWater },
+    { label: 'Calefacción', value: property.heating },
+    { label: 'Estado', value: property.condition },
+    { label: 'Antigüedad', value: property.propertyAge },
+    { label: 'Garaje', value: property.garage },
+    { label: 'Ascensor', value: property.elevator },
+    { label: 'Amueblado', value: property.furnished },
+    {
+      label: 'Energía',
+      value:
+        property.energyRating || property.energyValue != null
+          ? `${property.energyRating ?? '-'}${property.energyValue != null ? ` · ${property.energyValue} kg CO₂/m²/año` : ''}`
+          : null,
+    },
+    {
+      label: 'Emisiones',
+      value:
+        property.emissionsRating || property.emissionsValue != null
+          ? `${property.emissionsRating ?? '-'}${property.emissionsValue != null ? ` · ${property.emissionsValue} kg CO₂/m²/año` : ''}`
+          : null,
+    },
+  ].filter((item) => item.value)
 
   return (
     <div className="pt-16">
@@ -85,6 +110,20 @@ export default async function PropertyDetailPage({
               <h2 className="font-display text-2xl font-light text-stone-900 mb-4">Descripción</h2>
               <p className="text-stone-600 leading-relaxed text-sm">{property.description}</p>
             </div>
+
+            {featureItems.length > 0 && (
+              <div className="mt-10">
+                <h2 className="font-display text-2xl font-light text-stone-900 mb-4">Características</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {featureItems.map((item) => (
+                    <div key={item.label} className="border border-stone-100 p-4">
+                      <p className="text-xs uppercase tracking-wide text-stone-400 mb-1">{item.label}</p>
+                      <p className="text-sm text-stone-700 font-medium">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* RIGHT: Info panel */}

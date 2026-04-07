@@ -13,6 +13,18 @@ export type PropertyRow = {
   bedrooms: number | null
   bathrooms: number | null
   sq_meters: number | null
+  availability: string | null
+  hot_water: string | null
+  heating: string | null
+  condition: string | null
+  property_age: string | null
+  garage: string | null
+  elevator: string | null
+  furnished: string | null
+  energy_rating: string | null
+  energy_value: number | null
+  emissions_rating: string | null
+  emissions_value: number | null
   featured: boolean
   created_at: string
   updated_at: string
@@ -32,6 +44,18 @@ export function rowToProperty(r: PropertyRow): Property {
     bedrooms: r.bedrooms,
     bathrooms: r.bathrooms,
     sqMeters: r.sq_meters,
+    availability: r.availability,
+    hotWater: r.hot_water,
+    heating: r.heating,
+    condition: r.condition,
+    propertyAge: r.property_age,
+    garage: r.garage,
+    elevator: r.elevator,
+    furnished: r.furnished,
+    energyRating: r.energy_rating,
+    energyValue: r.energy_value,
+    emissionsRating: r.emissions_rating,
+    emissionsValue: r.emissions_value,
     featured: r.featured,
     createdAt: new Date(r.created_at),
     updatedAt: new Date(r.updated_at),
@@ -55,6 +79,18 @@ export type PropertyInsert = {
   bedrooms: number | null
   bathrooms: number | null
   sq_meters: number | null
+  availability: string | null
+  hot_water: string | null
+  heating: string | null
+  condition: string | null
+  property_age: string | null
+  garage: string | null
+  elevator: string | null
+  furnished: string | null
+  energy_rating: string | null
+  energy_value: number | null
+  emissions_rating: string | null
+  emissions_value: number | null
   featured: boolean
 }
 
@@ -70,6 +106,18 @@ export function bodyToInsert(body: {
   bedrooms?: string | number | null
   bathrooms?: string | number | null
   sqMeters?: string | number | null
+  availability?: string | null
+  hotWater?: string | null
+  heating?: string | null
+  condition?: string | null
+  propertyAge?: string | null
+  garage?: string | null
+  elevator?: string | null
+  furnished?: string | null
+  energyRating?: string | null
+  energyValue?: string | number | null
+  emissionsRating?: string | null
+  emissionsValue?: string | number | null
   featured?: boolean
 }): PropertyInsert {
   const imagesStr = Array.isArray(body.images) ? JSON.stringify(body.images) : String(body.images)
@@ -90,6 +138,22 @@ export function bodyToInsert(body: {
       : null,
     sq_meters: body.sqMeters !== undefined && body.sqMeters !== '' && body.sqMeters !== null
       ? parseFloat(String(body.sqMeters))
+      : null,
+    availability: body.availability || null,
+    hot_water: body.hotWater || null,
+    heating: body.heating || null,
+    condition: body.condition || null,
+    property_age: body.propertyAge || null,
+    garage: body.garage || null,
+    elevator: body.elevator || null,
+    furnished: body.furnished || null,
+    energy_rating: body.energyRating || null,
+    energy_value: body.energyValue !== undefined && body.energyValue !== '' && body.energyValue !== null
+      ? parseFloat(String(body.energyValue))
+      : null,
+    emissions_rating: body.emissionsRating || null,
+    emissions_value: body.emissionsValue !== undefined && body.emissionsValue !== '' && body.emissionsValue !== null
+      ? parseFloat(String(body.emissionsValue))
       : null,
     featured: Boolean(body.featured),
   }

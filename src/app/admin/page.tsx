@@ -44,6 +44,18 @@ const emptyForm = {
   bedrooms: '',
   bathrooms: '',
   sqMeters: '',
+  availability: '',
+  hotWater: '',
+  heating: '',
+  condition: '',
+  propertyAge: '',
+  garage: '',
+  elevator: '',
+  furnished: '',
+  energyRating: '',
+  energyValue: '',
+  emissionsRating: '',
+  emissionsValue: '',
   featured: false,
 }
 
@@ -144,6 +156,18 @@ export default function AdminPage() {
       bedrooms: p.bedrooms?.toString() || '',
       bathrooms: p.bathrooms?.toString() || '',
       sqMeters: p.sqMeters?.toString() || '',
+      availability: p.availability || '',
+      hotWater: p.hotWater || '',
+      heating: p.heating || '',
+      condition: p.condition || '',
+      propertyAge: p.propertyAge || '',
+      garage: p.garage || '',
+      elevator: p.elevator || '',
+      furnished: p.furnished || '',
+      energyRating: p.energyRating || '',
+      energyValue: p.energyValue?.toString() || '',
+      emissionsRating: p.emissionsRating || '',
+      emissionsValue: p.emissionsValue?.toString() || '',
       featured: p.featured,
     })
     setEditingId(p.id)
@@ -491,6 +515,74 @@ export default function AdminPage() {
                       })}
                     </ul>
                   )}
+                </div>
+              </div>
+
+              <div className="md:col-span-2 border border-stone-100 p-4">
+                <p className="text-xs text-stone-500 tracking-wide mb-4">Características opcionales</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Disponibilidad</label>
+                    <input name="availability" value={form.availability} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Agua caliente</label>
+                    <input name="hotWater" value={form.hotWater} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Calefacción</label>
+                    <input name="heating" value={form.heating} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Estado</label>
+                    <input name="condition" value={form.condition} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Antigüedad</label>
+                    <input name="propertyAge" value={form.propertyAge} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Garaje</label>
+                    <input name="garage" value={form.garage} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Ascensor</label>
+                    <input name="elevator" value={form.elevator} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Amueblado</label>
+                    <input name="furnished" value={form.furnished} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Etiqueta energética</label>
+                    <input name="energyRating" value={form.energyRating} onChange={handleChange}
+                      placeholder="Ej: G"
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Valor energía (kg CO₂/m²/año)</label>
+                    <input name="energyValue" value={form.energyValue} onChange={handleChange} type="number" step="any"
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Etiqueta emisiones</label>
+                    <input name="emissionsRating" value={form.emissionsRating} onChange={handleChange}
+                      placeholder="Ej: G"
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Valor emisiones (kg CO₂/m²/año)</label>
+                    <input name="emissionsValue" value={form.emissionsValue} onChange={handleChange} type="number" step="any"
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
                 </div>
               </div>
 

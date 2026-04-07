@@ -31,6 +31,9 @@ export async function POST(request: NextRequest) {
     const {
       title, price, location, type, status, description,
       images, fotocasaUrl, bedrooms, bathrooms, sqMeters, featured,
+      availability, hotWater, heating, condition, propertyAge,
+      garage, elevator, furnished, energyRating, energyValue,
+      emissionsRating, emissionsValue,
     } = body
 
     if (!title || !price || !location || !type || !description) {
@@ -49,6 +52,18 @@ export async function POST(request: NextRequest) {
       bedrooms,
       bathrooms,
       sqMeters,
+      availability,
+      hotWater,
+      heating,
+      condition,
+      propertyAge,
+      garage,
+      elevator,
+      furnished,
+      energyRating,
+      energyValue,
+      emissionsRating,
+      emissionsValue,
       featured,
     })
 

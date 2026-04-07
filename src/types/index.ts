@@ -11,6 +11,18 @@ export interface Property {
   bedrooms?: number | null
   bathrooms?: number | null
   sqMeters?: number | null
+  availability?: string | null
+  hotWater?: string | null
+  heating?: string | null
+  condition?: string | null
+  propertyAge?: string | null
+  garage?: string | null
+  elevator?: string | null
+  furnished?: string | null
+  energyRating?: string | null
+  energyValue?: number | null
+  emissionsRating?: string | null
+  emissionsValue?: number | null
   featured: boolean
   createdAt: Date
   updatedAt: Date
@@ -35,5 +47,17 @@ export interface PropertyFormData {
   bedrooms: string
   bathrooms: string
   sqMeters: string
+  availability: string
+  hotWater: string
+  heating: string
+  condition: string
+  propertyAge: string
+  garage: string
+  elevator: string
+  furnished: string
+  energyRating: string
+  energyValue: string
+  emissionsRating: string
+  emissionsValue: string
   featured: boolean
 }

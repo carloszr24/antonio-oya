@@ -33,6 +33,9 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     const {
       title, price, location, type, status, description,
       images, fotocasaUrl, bedrooms, bathrooms, sqMeters, featured,
+      availability, hotWater, heating, condition, propertyAge,
+      garage, elevator, furnished, energyRating, energyValue,
+      emissionsRating, emissionsValue,
     } = body
 
     const row = bodyToInsert({
@@ -47,6 +50,18 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       bedrooms,
       bathrooms,
       sqMeters,
+      availability,
+      hotWater,
+      heating,
+      condition,
+      propertyAge,
+      garage,
+      elevator,
+      furnished,
+      energyRating,
+      energyValue,
+      emissionsRating,
+      emissionsValue,
       featured,
     })
 
