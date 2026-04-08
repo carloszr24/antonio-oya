@@ -50,6 +50,7 @@ const emptyForm = {
   heating: '',
   condition: '',
   propertyAge: '',
+  floor: '',
   garage: '',
   elevator: '',
   furnished: '',
@@ -163,6 +164,7 @@ export default function AdminPage() {
       heating: p.heating || '',
       condition: p.condition || '',
       propertyAge: p.propertyAge || '',
+      floor: p.floor || '',
       garage: p.garage || '',
       elevator: p.elevator || '',
       furnished: p.furnished || '',
@@ -450,9 +452,9 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="text-xs text-stone-500 block mb-1.5">Link Fotocasa</label>
-                <input name="fotocasaUrl" value={form.fotocasaUrl} onChange={handleChange} type="url"
-                  placeholder="https://www.fotocasa.es/..."
+                <label className="text-xs text-stone-500 block mb-1.5">Link Idealista</label>
+                <input name="fotocasaUrl" value={form.fotocasaUrl} onChange={handleChange} type="text"
+                  placeholder="www.idealista.com/... (con o sin https://)"
                   className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
               </div>
 
@@ -556,6 +558,12 @@ export default function AdminPage() {
                   <div>
                     <label className="text-xs text-stone-500 block mb-1.5">Antigüedad</label>
                     <input name="propertyAge" value={form.propertyAge} onChange={handleChange}
+                      className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-stone-500 block mb-1.5">Planta</label>
+                    <input name="floor" value={form.floor} onChange={handleChange}
+                      placeholder="Ej: 6º"
                       className="w-full border border-stone-200 px-3 py-2.5 text-sm focus:outline-none focus:border-stone-900" />
                   </div>
                   <div>

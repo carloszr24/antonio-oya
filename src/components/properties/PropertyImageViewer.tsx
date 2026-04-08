@@ -54,13 +54,6 @@ export function PropertyImageViewer({ images, title }: PropertyImageViewerProps)
         onTouchStart={(e) => onTouchStart(e.touches[0].clientX)}
         onTouchEnd={(e) => onTouchEnd(e.changedTouches[0].clientX)}
       >
-        <button
-          type="button"
-          onClick={() => setLightboxOpen(true)}
-          className="absolute top-3 right-3 z-20 bg-black/55 text-white text-xs px-2.5 py-1.5 backdrop-blur-sm"
-        >
-          Ampliar
-        </button>
         <Image
           src={safeImages[index]}
           alt={`${title} ${index + 1}`}
@@ -69,11 +62,30 @@ export function PropertyImageViewer({ images, title }: PropertyImageViewerProps)
           priority
           sizes="(max-width: 1024px) 100vw, 60vw"
         />
+        <button
+          type="button"
+          onClick={() => setLightboxOpen(true)}
+          className="absolute inset-0 z-10 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/80"
+          aria-label="Ver imagen ampliada"
+        />
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation()
+            setLightboxOpen(true)
+          }}
+          className="absolute top-3 right-3 z-20 bg-black/55 text-white text-xs px-2.5 py-1.5 backdrop-blur-sm hover:bg-black/65"
+        >
+          Ampliar
+        </button>
         {safeImages.length > 1 && (
           <>
             <button
               type="button"
-              onClick={goPrev}
+              onClick={(e) => {
+                e.stopPropagation()
+                goPrev()
+              }}
               className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center bg-black/45 text-white text-xl"
               aria-label="Imagen anterior"
             >
@@ -81,7 +93,10 @@ export function PropertyImageViewer({ images, title }: PropertyImageViewerProps)
             </button>
             <button
               type="button"
-              onClick={goNext}
+              onClick={(e) => {
+                e.stopPropagation()
+                goNext()
+              }}
               className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center bg-black/45 text-white text-xl"
               aria-label="Imagen siguiente"
             >

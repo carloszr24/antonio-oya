@@ -32,6 +32,14 @@ export default async function PropertyDetailPage({
   const property = rowToProperty(data as PropertyRow)
 
   const images = parseImages(property.images)
+  const floorLabel = property.floor?.trim()
+  const elevatorLabel = property.elevator?.trim().toLowerCase()
+  const hasElevator =
+    elevatorLabel === 'si' ||
+    elevatorLabel === 'sí' ||
+    elevatorLabel === 'con ascensor' ||
+    elevatorLabel === 'true'
+  const showFloorCard = Boolean(floorLabel || hasElevator)
   const whatsappText = `Hola! Me gustaría solicitar información sobre ${property.title}`
   const whatsappUrl = `https://wa.me/34695919069?text=${encodeURIComponent(whatsappText)}`
   const featureItems = [
@@ -136,7 +144,7 @@ export default async function PropertyDetailPage({
               </div>
 
               {/* Specs */}
-              <div className="grid grid-cols-3 gap-3 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                 {property.sqMeters && (
                   <div className="text-center p-4 border border-stone-100">
                     <p className="text-xl font-light text-stone-900">{property.sqMeters}</p>
@@ -153,6 +161,15 @@ export default async function PropertyDetailPage({
                   <div className="text-center p-4 border border-stone-100">
                     <p className="text-xl font-light text-stone-900">{property.bathrooms}</p>
                     <p className="text-xs text-stone-400 mt-1">Baños</p>
+                  </div>
+                )}
+                {showFloorCard && (
+                  <div className="text-center p-4 border border-stone-100">
+                    <p className="text-xl font-light text-stone-900">{floorLabel || '-'}</p>
+                    <p className="text-xs text-stone-400 mt-1">Planta</p>
+                    {hasElevator && (
+                      <p className="text-[11px] text-stone-500 mt-1">con ascensor</p>
+                    )}
                   </div>
                 )}
               </div>
@@ -172,9 +189,9 @@ export default async function PropertyDetailPage({
                     href={property.fotocasaUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-outline w-full text-center text-sm py-4"
+                    className="w-full block text-center text-sm py-4 border border-[#69BE28] text-[#69BE28] hover:bg-[#69BE28] hover:text-white transition-colors duration-200"
                   >
-                    Ver en Fotocasa ↗
+                    Ver en Idealista ↗
                   </a>
                 )}
                 <a

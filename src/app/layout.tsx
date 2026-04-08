@@ -1,26 +1,18 @@
 import type { Metadata } from 'next'
-import { Inter, Nunito_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
-import { brand } from '@/lib/brand'
 
 const sans = Inter({
   subsets: ['latin'],
   variable: '--font-geist-sans',
 })
 
-const nunito = Nunito_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-cormorant',
-  adjustFontFallback: false,
-})
-
 export const metadata: Metadata = {
-  title: brand.seo.title,
-  description: brand.seo.description,
-  keywords: brand.seo.keywords,
+  title: 'AP Real Estate Services | Inmobiliaria en Almería',
+  description: 'Gestionamos arrendamientos y ventas de viviendas propias y de particulares en Almería.',
+  keywords: 'inmobiliaria, almería, pisos, casas, locales, alquiler, venta',
 }
 
 export default function RootLayout({
@@ -29,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${sans.variable} ${nunito.variable}`}>
+    <html lang="es" className={sans.variable}>
       <body className="bg-white text-stone-900 antialiased">
         <Navbar />
         <main className="min-h-screen">{children}</main>

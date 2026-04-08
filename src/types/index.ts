@@ -17,6 +17,7 @@ export interface Property {
   heating?: string | null
   condition?: string | null
   propertyAge?: string | null
+  floor?: string | null
   garage?: string | null
   elevator?: string | null
   furnished?: string | null
@@ -55,6 +56,7 @@ export interface PropertyFormData {
   heating: string
   condition: string
   propertyAge: string
+  floor: string
   garage: string
   elevator: string
   furnished: string

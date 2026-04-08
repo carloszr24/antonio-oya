@@ -34,7 +34,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       title, price, location, type, operation, status, description,
       images, fotocasaUrl, bedrooms, bathrooms, sqMeters, featured,
       availability, hotWater, heating, condition, propertyAge,
-      garage, elevator, furnished, energyRating, energyValue,
+      floor, garage, elevator, furnished, energyRating, energyValue,
       emissionsRating, emissionsValue,
     } = body
 
@@ -56,6 +56,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       heating,
       condition,
       propertyAge,
+      floor,
       garage,
       elevator,
       furnished,

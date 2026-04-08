@@ -1,12 +1,19 @@
 'use client'
 
 import { useState } from 'react'
-import { brand } from '@/lib/brand'
 
 export default function ContactoPage() {
   const [form, setForm] = useState({ nombre: '', email: '', telefono: '', mensaje: '' })
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const mapsHref = 'https://www.google.com/maps/place/AP+Real+Estate+Services/@36.8374433,-2.4588639,18z/data=!3m1!4b1!4m6!3m5!1s0xd7a9d2dd1816679:0x72ee21246ddfb14a!8m2!3d36.8374417!4d-2.4579006!16s%2Fg%2F11j90l4_w8?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D'
+  const phoneDisplay = '950 79 02 17'
+  const phoneHref = 'tel:+34950790217'
+  const email = 'adm.ap.servicios.inmobiliarios@gmail.com'
+  const emailHref = `mailto:${email}`
+  const whatsappDisplay = '+34 695 91 90 69'
+  const whatsappHref = 'https://wa.me/34695919069'
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -29,7 +36,7 @@ export default function ContactoPage() {
           <p className="text-gold text-xs tracking-[0.3em] uppercase mb-4">Estamos aquí</p>
           <h1 className="font-display text-5xl md:text-6xl font-light">Contacto</h1>
           <p className="text-stone-400 mt-4 text-lg font-light max-w-md">
-            Escríbenos o llámanos. Si quieres comprar o vender, estamos aquí para asesorarte.
+            Escríbenos o llámanos. Respondemos en menos de 24 horas.
           </p>
         </div>
       </div>
@@ -126,20 +133,70 @@ export default function ContactoPage() {
             <div>
               <h2 className="font-display text-3xl font-light text-stone-900 mb-8">Información</h2>
               <div className="space-y-6">
-                {[
-                  { icon: '📍', label: 'Dirección', value: brand.addressLine },
-                  { icon: '📞', label: 'Teléfono', value: brand.phoneDisplay },
-                  { icon: '✉️', label: 'Email', value: brand.email },
-                  { icon: '🕐', label: 'Horario', value: 'Lun–Vie: 9:30–14:00 · 17:00–20:00\nSáb–Dom: Cerrado' },
-                ].map((item) => (
-                  <div key={item.label} className="flex gap-4">
-                    <span className="text-xl shrink-0">{item.icon}</span>
-                    <div>
-                      <p className="text-xs text-stone-400 tracking-wide mb-1">{item.label}</p>
-                      <p className="text-stone-700 text-sm whitespace-pre-line">{item.value}</p>
-                    </div>
+                <div className="flex gap-4">
+                  <span className="text-xl shrink-0">📍</span>
+                  <div>
+                    <p className="text-xs text-stone-400 tracking-wide mb-1">Dirección</p>
+                    <a
+                      href={mapsHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-stone-700 text-sm whitespace-pre-line hover:text-stone-900 transition-colors"
+                    >
+                      Av. de la Estación, 25, 7º 3 B
+                      <br />
+                      04005 Almería
+                    </a>
                   </div>
-                ))}
+                </div>
+
+                <div className="flex gap-4">
+                  <span className="text-xl shrink-0">📞</span>
+                  <div>
+                    <p className="text-xs text-stone-400 tracking-wide mb-1">Teléfono</p>
+                    <a href={phoneHref} className="text-stone-700 text-sm hover:text-stone-900 transition-colors">
+                      {phoneDisplay}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <span className="text-xl shrink-0">✉️</span>
+                  <div>
+                    <p className="text-xs text-stone-400 tracking-wide mb-1">Email</p>
+                    <a href={emailHref} className="text-stone-700 text-sm hover:text-stone-900 transition-colors break-all">
+                      {email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <span className="shrink-0 mt-0.5 text-[#25D366]" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+                      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.02 0C5.42 0 .05 5.36.05 11.96c0 2.1.55 4.16 1.6 5.97L0 24l6.24-1.63a11.9 11.9 0 0 0 5.78 1.48h.01c6.6 0 11.97-5.36 11.97-11.96 0-3.2-1.25-6.22-3.48-8.41Zm-8.5 18.35h-.01a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.7.97.99-3.6-.23-.37a9.92 9.92 0 0 1-1.52-5.28c0-5.5 4.47-9.97 9.98-9.97 2.66 0 5.17 1.04 7.05 2.92a9.9 9.9 0 0 1 2.92 7.05c0 5.5-4.48 9.98-9.99 9.98Zm5.47-7.49c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.69.15-.2.3-.79.98-.96 1.18-.18.2-.35.23-.65.08-.3-.15-1.28-.47-2.43-1.49-.9-.8-1.51-1.79-1.69-2.09-.18-.3-.02-.46.14-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.69-1.66-.94-2.28-.25-.6-.5-.52-.69-.53l-.58-.01c-.2 0-.53.08-.8.38-.28.3-1.06 1.03-1.06 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.26 5.15 4.57.72.31 1.28.5 1.71.64.72.23 1.37.2 1.89.12.58-.09 1.78-.73 2.03-1.44.25-.7.25-1.3.18-1.44-.08-.13-.28-.2-.58-.35Z"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <p className="text-xs text-stone-400 tracking-wide mb-1">WhatsApp</p>
+                    <a
+                      href={whatsappHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-stone-700 text-sm hover:text-stone-900 transition-colors"
+                    >
+                      {whatsappDisplay}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <span className="text-xl shrink-0">🕐</span>
+                  <div>
+                    <p className="text-xs text-stone-400 tracking-wide mb-1">Horario</p>
+                    <p className="text-stone-700 text-sm whitespace-pre-line">Lun–Vie: 9:30–14:00 · 17:00–20:00
+Sáb–Dom: Cerrado</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -147,7 +204,11 @@ export default function ContactoPage() {
             <div className="border-t border-stone-100 pt-8">
               <p className="text-xs text-stone-400 tracking-widest uppercase mb-4">Redes sociales</p>
               <div className="flex gap-4">
-                {brand.socialLinks.map((social) => (
+                {[
+                  { name: 'Instagram', href: '#' },
+                  { name: 'Facebook', href: '#' },
+                  { name: 'LinkedIn', href: '#' },
+                ].map((social) => (
                   <a
                     key={social.name}
                     href={social.href}

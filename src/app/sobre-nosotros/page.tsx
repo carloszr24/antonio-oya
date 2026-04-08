@@ -1,47 +1,63 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { brand } from '@/lib/brand'
 
 const services = [
   {
     icon: '🏠',
     title: 'Compra y venta',
-    desc: 'Gestionamos compraventa de fincas rústicas y urbanas con asesoramiento personalizado.',
+    desc: 'Gestionamos todo el proceso de compraventa, desde la búsqueda hasta la firma en notaría. Negociamos en tu nombre para obtener las mejores condiciones.',
   },
   {
     icon: '📊',
-    title: 'Tasaciones',
-    desc: 'Valoramos tu inmueble con criterio de mercado para ayudarte a tomar buenas decisiones.',
+    title: 'Valoración de inmuebles',
+    desc: 'Estudio de mercado riguroso para conocer el precio real de tu propiedad. Sin compromisos, con total transparencia.',
   },
   {
     icon: '💼',
-    title: 'Asesoramiento completo',
-    desc: 'Te acompañamos en todo el proceso de compra o venta con un trato cercano y transparente.',
+    title: 'Asesoramiento jurídico',
+    desc: 'Revisión de contratos, verificación registral y acompañamiento legal en todo el proceso. Tu seguridad es nuestra prioridad.',
   },
   {
     icon: '🔑',
-    title: 'Gestión de operaciones',
-    desc: 'Coordinamos trámites y pasos clave para que la operación sea ágil y segura.',
+    title: 'Gestión post-venta',
+    desc: 'Nuestro servicio no termina con la firma. Te ayudamos con cambios de suministros, reformas y cualquier gestión posterior.',
   },
   {
     icon: '🏦',
-    title: 'Venta con estrategia',
-    desc: 'Definimos una estrategia de comercializacion para vender en el mejor tiempo posible.',
+    title: 'Financiación',
+    desc: 'Colaboramos con las principales entidades bancarias para conseguirte la mejor hipoteca adaptada a tu situación.',
   },
   {
-    icon: '🤝',
-    title: 'Atención cercana',
-    desc: 'Si quieres comprar o vender, estamos aquí para asesorarte en cada etapa.',
+    icon: '🌐',
+    title: 'Inversión internacional',
+    desc: 'Asesoramiento especializado para compradores internacionales. Servicios en español, inglés y francés.',
   },
 ]
 
 const team = [
-  {
-    name: 'Antonio Oya',
-    role: 'Asesor inmobiliario',
-    img: 'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=400',
-  },
+  { name: 'María González', role: 'Directora comercial' },
+  { name: 'Carlos Fernández', role: 'Agente senior' },
+  { name: 'Laura Martínez', role: 'Asesora jurídica' },
 ]
+
+function DefaultTeamAvatar({ label }: { label: string }) {
+  return (
+    <div
+      className="absolute inset-0 flex items-center justify-center rounded-full bg-[#e8eaed]"
+      role="img"
+      aria-label={label}
+    >
+      <svg
+        className="w-[52%] h-[52%] text-[#5f6368]"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden
+      >
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+      </svg>
+    </div>
+  )
+}
 
 export default function SobreNosotrosPage() {
   return (
@@ -52,17 +68,19 @@ export default function SobreNosotrosPage() {
           <div>
             <p className="text-gold text-xs tracking-[0.3em] uppercase mb-4">Quiénes somos</p>
             <h1 className="font-display text-5xl md:text-6xl font-light leading-tight mb-6">
-              Inmobiliaria Mancha Real<br />
-              <span className="italic">Antonio Oya</span>
+              Más de 15 años<br />
+              <span className="italic">transformando sueños</span><br />
+              en hogares
             </h1>
             <p className="text-stone-400 text-lg font-light leading-relaxed">
-              {brand.claim}
+              Somos un equipo de agentes inmobiliarios en Almería con una misión clara:
+              ofrecer un servicio cercano, honesto y completamente orientado al cliente.
             </p>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden">
             <Image
               src="/images/imagen-nosotros.jpg"
-              alt={`Equipo ${brand.businessName}`}
+              alt="Oficina AP Real Estate Services"
               fill
               className="object-cover"
             />
@@ -75,8 +93,8 @@ export default function SobreNosotrosPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           {[
             { value: 'Transparencia', desc: 'Información clara y honesta en cada paso del proceso.' },
-            { value: 'Cercanía', desc: 'Te acompañamos personalmente desde el primer contacto.' },
-            { value: 'Compromiso', desc: `Trabajamos para ofrecer resultados reales en ${brand.location}.` },
+            { value: 'Proximidad', desc: 'Te acompañamos personalmente desde el primer contacto.' },
+            { value: 'Resultados', desc: 'Más del 95% de nuestros clientes nos recomiendan.' },
           ].map((item) => (
             <div key={item.value} className="p-8">
               <div className="w-1 h-8 bg-gold mx-auto mb-6" />
@@ -120,13 +138,8 @@ export default function SobreNosotrosPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
           {team.map((person) => (
             <div key={person.name} className="text-center">
-              <div className="relative aspect-square overflow-hidden mb-4 max-w-[180px] mx-auto">
-                <Image
-                  src={person.img}
-                  alt={person.name}
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative aspect-square overflow-hidden mb-4 max-w-[180px] mx-auto rounded-full ring-1 ring-stone-200/80">
+                <DefaultTeamAvatar label={`${person.name}, sin foto de perfil`} />
               </div>
               <h3 className="font-medium text-stone-900">{person.name}</h3>
               <p className="text-stone-400 text-sm mt-1">{person.role}</p>
