@@ -173,6 +173,6 @@ export function bodyToInsert(body: {
     emissions_value: body.emissionsValue !== undefined && body.emissionsValue !== '' && body.emissionsValue !== null
       ? parseFloat(String(body.emissionsValue))
       : null,
-    featured: Boolean(body.featured),
+    featured: body.featured === true || body.featured === 'true',
   }
 }
