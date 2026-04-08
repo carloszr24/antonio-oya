@@ -41,7 +41,7 @@ export default async function PropertyDetailPage({
     elevatorLabel === 'true'
   const showFloorCard = Boolean(floorLabel || hasElevator)
   const whatsappText = `Hola! Me gustaría solicitar información sobre ${property.title}`
-  const whatsappUrl = `https://wa.me/34695919069?text=${encodeURIComponent(whatsappText)}`
+  const whatsappUrl = `https://wa.me/34647205949?text=${encodeURIComponent(whatsappText)}`
   const featureItems = [
     { label: 'Tipo de inmueble', value: TYPE_LABELS[property.type] || property.type },
     { label: 'Disponibilidad', value: property.availability },
@@ -195,10 +195,10 @@ export default async function PropertyDetailPage({
                   </a>
                 )}
                 <a
-                  href="tel:+34952000000"
+                  href="tel:+34647205949"
                   className="block text-center text-sm text-stone-500 hover:text-stone-900 transition-colors py-2"
                 >
-                  📞 +34 952 000 000
+                  📞 647 20 59 49
                 </a>
               </div>
             </div>

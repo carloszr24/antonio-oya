@@ -73,14 +73,14 @@ export default function SobreNosotrosPage() {
               en hogares
             </h1>
             <p className="text-stone-400 text-lg font-light leading-relaxed">
-              Somos un equipo de agentes inmobiliarios en Almería con una misión clara:
+              Somos un equipo de agentes inmobiliarios en Mancha Real (Jaén) con una misión clara:
               ofrecer un servicio cercano, honesto y completamente orientado al cliente.
             </p>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden">
             <Image
               src="/images/imagen-nosotros.jpg"
-              alt="Oficina AP Real Estate Services"
+              alt="Oficina Inmobiliaria Antonio Oya"
               fill
               className="object-cover"
             />

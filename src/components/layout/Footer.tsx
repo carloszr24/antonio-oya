@@ -2,10 +2,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export function Footer() {
-  const mapsHref = 'https://www.google.com/maps/place/AP+Real+Estate+Services/@36.8374433,-2.4588639,18z/data=!3m1!4b1!4m6!3m5!1s0xd7a9d2dd1816679:0x72ee21246ddfb14a!8m2!3d36.8374417!4d-2.4579006!16s%2Fg%2F11j90l4_w8?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D'
-  const phoneHref = 'tel:+34950790217'
-  const emailHref = 'mailto:adm.ap.servicios.inmobiliarios@gmail.com'
-  const whatsappHref = 'https://wa.me/34695919069'
+  const mapsHref = 'https://www.google.com/maps/search/?api=1&query=23100+Mancha+Real,+Ja%C3%A9n'
+  const phoneHref = 'tel:+34647205949'
+  const emailHref = 'mailto:antoniooyaplanet2405@gmail.com'
+  const whatsappHref = 'https://wa.me/34647205949'
 
   return (
     <footer className="bg-stone-200 text-stone-700 mt-24 border-t border-stone-300">
@@ -14,13 +14,13 @@ export function Footer() {
           <div className="md:col-span-2">
             <Image
               src="/images/logo-AP.png"
-              alt="AP Real Estate Services"
+              alt="Inmobiliaria Antonio Oya"
               width={230}
               height={52}
               className="h-11 w-auto"
             />
             <p className="mt-4 text-sm leading-relaxed text-stone-600 max-w-sm">
-              Gestionamos arrendamientos y ventas de viviendas propias y de particulares en Almería.
+              Inmobiliaria Antonio Oya en Mancha Real (Jaén). Compra, venta, tasaciones y asesoramiento personalizado.
             </p>
           </div>
           <div>
@@ -41,14 +41,14 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors"
                 >
-                  Av. de la Estación, 25, 7º 3 B, 04005 Almería
+                  23100 Mancha Real, Jaén
                 </a>
               </li>
               <li>
-                <a href={phoneHref} className="hover:text-stone-900 transition-colors">950 79 02 17</a>
+                <a href={phoneHref} className="hover:text-stone-900 transition-colors">647 20 59 49</a>
               </li>
               <li>
-                <a href={emailHref} className="hover:text-stone-900 transition-colors">adm.ap.servicios.inmobiliarios@gmail.com</a>
+                <a href={emailHref} className="hover:text-stone-900 transition-colors">antoniooyaplanet2405@gmail.com</a>
               </li>
               <li>
                 <a
@@ -57,14 +57,14 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-stone-900 transition-colors"
                 >
-                  WhatsApp: +34 695 91 90 69
+                  WhatsApp: 647 20 59 49
                 </a>
               </li>
             </ul>
           </div>
         </div>
         <div className="border-t border-stone-300 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500">
-          <span>© {new Date().getFullYear()} AP Real Estate Services. Todos los derechos reservados.</span>
+          <span>© {new Date().getFullYear()} Inmobiliaria Antonio Oya. Todos los derechos reservados.</span>
           <Link href="/admin" className="hover:text-stone-900 transition-colors">Panel Admin</Link>
         </div>
       </div>

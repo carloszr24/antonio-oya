@@ -22,7 +22,7 @@ const REVIEWS: Review[] = [
   {
     id: 3,
     name: 'Federico Sánchez',
-    text: 'Muy satisfecho con los servicios de AP Real Estate Services. Carlos es un profesional formal, servicial y honesto. Sin duda, confiaremos en él en el futuro.',
+    text: 'Muy satisfecho con los servicios de Inmobiliaria Antonio Oya. Carlos es un profesional formal, servicial y honesto. Sin duda, confiaremos en él en el futuro.',
   },
   {
     id: 4,

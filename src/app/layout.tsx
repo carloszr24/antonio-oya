@@ -10,9 +10,9 @@ const sans = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'AP Real Estate Services | Inmobiliaria en Almería',
-  description: 'Gestionamos arrendamientos y ventas de viviendas propias y de particulares en Almería.',
-  keywords: 'inmobiliaria, almería, pisos, casas, locales, alquiler, venta',
+  title: 'Inmobiliaria Antonio Oya | Mancha Real, Jaén',
+  description: 'Inmobiliaria Antonio Oya en Mancha Real (Jaén). Compra, venta, tasaciones y asesoramiento personalizado.',
+  keywords: 'inmobiliaria, mancha real, jaén, pisos, casas, locales, alquiler, venta, tasaciones',
 }
 
 export default function RootLayout({

@@ -7,13 +7,13 @@ export default function ContactoPage() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const mapsHref = 'https://www.google.com/maps/place/AP+Real+Estate+Services/@36.8374433,-2.4588639,18z/data=!3m1!4b1!4m6!3m5!1s0xd7a9d2dd1816679:0x72ee21246ddfb14a!8m2!3d36.8374417!4d-2.4579006!16s%2Fg%2F11j90l4_w8?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D'
-  const phoneDisplay = '950 79 02 17'
-  const phoneHref = 'tel:+34950790217'
-  const email = 'adm.ap.servicios.inmobiliarios@gmail.com'
+  const mapsHref = 'https://www.google.com/maps/search/?api=1&query=23100+Mancha+Real,+Ja%C3%A9n'
+  const phoneDisplay = '647 20 59 49'
+  const phoneHref = 'tel:+34647205949'
+  const email = 'antoniooyaplanet2405@gmail.com'
   const emailHref = `mailto:${email}`
-  const whatsappDisplay = '+34 695 91 90 69'
-  const whatsappHref = 'https://wa.me/34695919069'
+  const whatsappDisplay = '647 20 59 49'
+  const whatsappHref = 'https://wa.me/34647205949'
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -143,9 +143,7 @@ export default function ContactoPage() {
                       rel="noopener noreferrer"
                       className="text-stone-700 text-sm whitespace-pre-line hover:text-stone-900 transition-colors"
                     >
-                      Av. de la Estación, 25, 7º 3 B
-                      <br />
-                      04005 Almería
+                      23100 Mancha Real, Jaén
                     </a>
                   </div>
                 </div>

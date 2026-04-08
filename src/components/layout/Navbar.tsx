@@ -12,8 +12,8 @@ const links = [
   { href: '/contacto', label: 'Contacto' },
 ]
 
-const phoneDisplay = '950 79 02 17'
-const phoneHref = 'tel:+34950790217'
+const phoneDisplay = '647 20 59 49'
+const phoneHref = 'tel:+34647205949'
 
 export function Navbar() {
   const pathname = usePathname()
@@ -60,7 +60,7 @@ export function Navbar() {
             <Link
               href={phoneHref}
               className="btn-primary text-xs px-5 py-2.5"
-              aria-label="Llamar al 950 79 02 17"
+              aria-label="Llamar al 647 20 59 49"
             >
               {phoneDisplay}
             </Link>
@@ -98,7 +98,7 @@ export function Navbar() {
             href={phoneHref}
             onClick={() => setOpen(false)}
             className="btn-primary text-xs mt-4 w-full text-center"
-            aria-label="Llamar al 950 79 02 17"
+            aria-label="Llamar al 647 20 59 49"
           >
             Llamar: {phoneDisplay}
           </Link>
