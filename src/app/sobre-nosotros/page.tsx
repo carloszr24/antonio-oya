@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 const services = [
@@ -62,32 +61,6 @@ function DefaultTeamAvatar({ label }: { label: string }) {
 export default function SobreNosotrosPage() {
   return (
     <div className="pt-16">
-      {/* Hero */}
-      <section className="bg-stone-950 text-white py-24 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <p className="text-gold text-xs tracking-[0.3em] uppercase mb-4">Quiénes somos</p>
-            <h1 className="font-display text-5xl md:text-6xl font-light leading-tight mb-6">
-              Más de 15 años<br />
-              <span className="italic">transformando sueños</span><br />
-              en hogares
-            </h1>
-            <p className="text-stone-400 text-lg font-light leading-relaxed">
-              Somos un equipo de agentes inmobiliarios en Mancha Real (Jaén) con una misión clara:
-              ofrecer un servicio cercano, honesto y completamente orientado al cliente.
-            </p>
-          </div>
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image
-              src="/images/imagen-nosotros.jpg"
-              alt="Oficina Inmobiliaria Antonio Oya"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Values */}
       <section className="py-24 px-6 md:px-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
