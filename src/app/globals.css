@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  /* Azul corporativo (del logo) */
-  --gold: #0A16FF;
-  --gold-light: #4D5CFF;
-  --gold-dark: #0810CC;
+  /* Color corporativo principal */
+  --gold: #0675a8;
+  --gold-light: #2e8db8;
+  --gold-dark: #045e86;
 }
 
 @layer base {

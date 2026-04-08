@@ -189,7 +189,7 @@ export default async function PropertyDetailPage({
                     href={property.fotocasaUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full block text-center text-sm py-4 border border-[#69BE28] text-[#69BE28] hover:bg-[#69BE28] hover:text-white transition-colors duration-200"
+                    className="btn-outline w-full block text-center text-sm py-4"
                   >
                     Ver en Idealista ↗
                   </a>
