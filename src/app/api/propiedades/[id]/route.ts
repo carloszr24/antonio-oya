@@ -77,8 +77,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
     if (error) throw error
     return NextResponse.json(rowToProperty(data as PropertyRow))
-  } catch {
-    return NextResponse.json({ error: 'Error al actualizar' }, { status: 500 })
+  } catch (error) {
+    return NextResponse.json({ error: error instanceof Error ? error.message : JSON.stringify(error) }, { status: 500 })
   }
 }
 
