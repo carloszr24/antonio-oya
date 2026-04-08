@@ -250,6 +250,9 @@ export default function AdminPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSaving(true)
+    // #region agent log
+    fetch('http://127.0.0.1:7741/ingest/efd49a79-f09f-4d7e-bc0e-6b1124b29184',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'55e489'},body:JSON.stringify({sessionId:'55e489',runId:'property-submit-ui',hypothesisId:'H2',location:'src/app/admin/page.tsx:handleSubmit:start',message:'Admin submit started',data:{editingId:editingId ?? null,imageItems:imageItems.length},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     try {
       const existingUrlsInOrder = imageItems
         .filter((i): i is Extract<ImageItem, { kind: 'existing' }> => i.kind === 'existing')
@@ -263,17 +266,22 @@ export default function AdminPage() {
           credentials: 'include',
           body: JSON.stringify({ ...form, images: existingUrlsInOrder }),
         })
+        // #region agent log
+        fetch('http://127.0.0.1:7741/ingest/efd49a79-f09f-4d7e-bc0e-6b1124b29184',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'55e489'},body:JSON.stringify({sessionId:'55e489',runId:'property-submit-ui',hypothesisId:'H2',location:'src/app/admin/page.tsx:handleSubmit:createRes',message:'Create property response received',data:{ok:createRes.ok,status:createRes.status},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
         if (!createRes.ok) throw new Error('Error al crear propiedad')
         const created = await createRes.json() as { id: string }
         const propertyId = created.id
 
         // 2) Subir imágenes nuevas y actualizar orden final
         const uploaded = await uploadNewImages(propertyId)
+        console.log('uploaded:', JSON.stringify(uploaded))
         const finalUrls = imageItems.map((it) => {
           if (it.kind === 'existing') return it.url
           const match = uploaded.find((u) => u.id === it.id)
           return match?.url || ''
         }).filter(Boolean)
+        console.log('finalUrls:', JSON.stringify(finalUrls))
 
         await fetch(`/api/propiedades/${propertyId}`, {
           method: 'PUT',
@@ -281,6 +289,9 @@ export default function AdminPage() {
           credentials: 'include',
           body: JSON.stringify({ ...form, images: finalUrls }),
         })
+        // #region agent log
+        fetch('http://127.0.0.1:7741/ingest/efd49a79-f09f-4d7e-bc0e-6b1124b29184',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'55e489'},body:JSON.stringify({sessionId:'55e489',runId:'property-submit-ui',hypothesisId:'H5',location:'src/app/admin/page.tsx:handleSubmit:createFlowDone',message:'Create flow finished',data:{propertyId,finalUrlsCount:finalUrls.length},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
       } else {
         const propertyId = editingId
 
@@ -298,6 +309,9 @@ export default function AdminPage() {
           credentials: 'include',
           body: JSON.stringify({ ...form, images: finalUrls }),
         })
+        // #region agent log
+        fetch('http://127.0.0.1:7741/ingest/efd49a79-f09f-4d7e-bc0e-6b1124b29184',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'55e489'},body:JSON.stringify({sessionId:'55e489',runId:'property-submit-ui',hypothesisId:'H5',location:'src/app/admin/page.tsx:handleSubmit:updateFlowDone',message:'Update flow finished',data:{propertyId,finalUrlsCount:finalUrls.length},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
 
         await deleteRemovedImages(finalUrls)
       }
@@ -305,6 +319,11 @@ export default function AdminPage() {
       setShowForm(false)
       setEditingId(null)
       await fetchProperties()
+    } catch (err) {
+      // #region agent log
+      fetch('http://127.0.0.1:7741/ingest/efd49a79-f09f-4d7e-bc0e-6b1124b29184',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'55e489'},body:JSON.stringify({sessionId:'55e489',runId:'property-submit-ui',hypothesisId:'H3',location:'src/app/admin/page.tsx:handleSubmit:catch',message:'Admin submit failed',data:{errorMessage:err instanceof Error ? err.message : 'unknown'},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
+      throw err
     } finally {
       setSaving(false)
     }
