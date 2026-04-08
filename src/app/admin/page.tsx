@@ -9,15 +9,13 @@ type ImageItem =
   | { id: string; kind: 'existing'; url: string }
   | { id: string; kind: 'new'; file: File; previewUrl: string }
 
-function safeParseImages(images: string): string[] {
+function safeParseImages(images: string | string[]): string[] {
+  if (Array.isArray(images)) return images
   try {
-    const parsed = JSON.parse(images)
-    return Array.isArray(parsed) ? parsed.map(String) : []
+    const p = JSON.parse(images || '[]')
+    return Array.isArray(p) ? p : [images].filter(Boolean)
   } catch {
-    return images
-      .split('\n')
-      .map((s) => s.trim())
-      .filter(Boolean)
+    return images ? [images] : []
   }
 }
 
