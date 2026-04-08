@@ -38,20 +38,11 @@ export default async function PropiedadesPage({
 
   return (
     <div className="pt-16">
-      {/* Header */}
-      <div className="bg-stone-950 text-white py-20 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-gold text-xs tracking-[0.3em] uppercase mb-4">Catálogo</p>
-          <h1 className="font-display text-5xl md:text-6xl font-light">Propiedades</h1>
-          <div className="mt-8 max-w-3xl">
-            <Suspense fallback={<div className="skeleton h-64 w-full" />}>
-              <PropertyFilters />
-            </Suspense>
-          </div>
-        </div>
-      </div>
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-10 space-y-8">
+        <Suspense fallback={<div className="skeleton h-24 w-full" />}>
+          <PropertyFilters />
+        </Suspense>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-14">
         {/* Grid */}
         {properties.length === 0 ? (
           <div className="text-center py-20">
