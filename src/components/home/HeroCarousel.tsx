@@ -37,10 +37,7 @@ export function HeroCarousel() {
 
       <div className="relative z-10 text-center px-4 min-[400px]:px-6 max-w-5xl mx-auto">
         <h1 className="font-display text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)] text-balance max-md:tracking-[-0.02em] text-[calc(clamp(2.25rem,7.5vw+0.35rem,3.45rem)+4pt)] md:text-[calc(clamp(2.65rem,5.2vw+1.1rem,5.8rem)+4pt)] leading-[1.11] md:leading-[1.05] mb-6 md:mb-8 animate-fade-up">
-          Encuentra tu hogar
-          <span className="hidden md:inline"> </span>
-          <br className="md:hidden" aria-hidden="true" />
-          en Mancha Real
+          Líderes en Compraventa de Fincas Rústicas y Urbanas en Jaén
         </h1>
         <p
           className="text-stone-100 drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)] text-[calc(1rem+4pt)] sm:text-[calc(1.125rem+4pt)] md:text-[calc(1.25rem+4pt)] font-normal max-w-[min(100%,22rem)] sm:max-w-2xl mx-auto mb-8 sm:mb-9 md:mb-10 leading-relaxed text-pretty animate-fade-up"
