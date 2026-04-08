@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { createPublicSupabase } from '@/lib/supabase/public-server'
 import { rowsToProperties, type PropertyRow } from '@/lib/property-db'
 import { ReviewsCarousel } from '@/components/home/ReviewsCarousel'
 import { FeaturedPropertiesGrid } from '@/components/home/FeaturedPropertiesGrid'
-import { formatPrice } from '@/lib/utils'
+import { HeroCarousel } from '@/components/home/HeroCarousel'
 
 export const dynamic = 'force-dynamic'
 
@@ -42,42 +41,7 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-svh pt-24 pb-14 md:pt-28 md:pb-20 flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/Carrusel-1-Antonio.jpg"
-            alt="Viviendas en Mancha Real, Jaén"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/70 via-stone-950/55 to-stone-950/75" />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 text-center px-4 min-[400px]:px-6 max-w-5xl mx-auto">
-          <h1 className="font-display text-white text-balance max-md:tracking-[-0.02em] text-[calc(clamp(2.25rem,7.5vw+0.35rem,3.45rem)+4pt)] md:text-[calc(clamp(2.65rem,5.2vw+1.1rem,5.8rem)+4pt)] leading-[1.11] md:leading-[1.05] mb-6 md:mb-8 animate-fade-up">
-            Encuentra tu hogar
-            <span className="hidden md:inline"> </span>
-            <br className="md:hidden" aria-hidden="true" />
-            en Mancha Real
-          </h1>
-          <p className="text-stone-200 text-[calc(1rem+4pt)] sm:text-[calc(1.125rem+4pt)] md:text-[calc(1.25rem+4pt)] font-normal max-w-[min(100%,22rem)] sm:max-w-2xl mx-auto mb-8 sm:mb-9 md:mb-10 leading-relaxed text-pretty animate-fade-up" style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}>
-            Gestionamos arrendamientos y ventas de viviendas propias y de particulares.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}>
-            <Link href="/propiedades" className="btn-gold px-10 py-4 text-[calc(0.875rem+4pt)] tracking-wide">
-              Ver propiedades
-            </Link>
-            <Link href="/contacto" className="text-white text-[calc(0.875rem+4pt)] tracking-wide border border-white/30 px-10 py-4 hover:border-white transition-colors duration-200">
-              Contactar
-            </Link>
-          </div>
-        </div>
-
-      </section>
+      <HeroCarousel />
 
       <ReviewsCarousel />
 
