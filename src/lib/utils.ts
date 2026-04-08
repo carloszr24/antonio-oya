@@ -14,7 +14,8 @@ export function formatPrice(price: number, operation?: string): string {
   return operation === 'alquiler' ? `${base}/mes` : base
 }
 
-export function parseImages(images: string): string[] {
+export function parseImages(images: string | string[]): string[] {
+  if (Array.isArray(images)) return images
   try {
     return JSON.parse(images)
   } catch {

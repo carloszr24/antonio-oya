@@ -50,7 +50,14 @@ export function rowToProperty(r: PropertyRow): Property {
     operation: r.operation || 'venta',
     status: r.status,
     description: r.description,
-    images: r.images,
+    images: (() => {
+      try {
+        const p = JSON.parse(r.images || '[]')
+        return Array.isArray(p) ? p : [r.images].filter(Boolean)
+      } catch {
+        return r.images ? [r.images] : []
+      }
+    })(),
     fotocasaUrl: r.fotocasa_url,
     bedrooms: r.bedrooms,
     bathrooms: r.bathrooms,

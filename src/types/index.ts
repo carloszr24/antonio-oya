@@ -7,7 +7,7 @@ export interface Property {
   operation?: string
   status: string
   description: string
-  images: string
+  images: string[]
   fotocasaUrl?: string | null
   bedrooms?: number | null
   bathrooms?: number | null
