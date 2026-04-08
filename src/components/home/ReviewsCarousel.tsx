@@ -76,7 +76,7 @@ function StarRow() {
 
 function GoogleBadge() {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white px-3 py-1 text-xs font-medium text-stone-700">
+    <span className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white px-3 py-1 text-xs font-medium text-stone-700 shadow-sm">
       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
         <path fill="#EA4335" d="M12 10.2v3.9h5.4c-.2 1.2-.9 2.2-1.9 2.9v2.4h3.1c1.8-1.7 2.9-4.2 2.9-7.2 0-.7-.1-1.4-.2-2H12z" />
         <path fill="#34A853" d="M12 22c2.6 0 4.8-.9 6.4-2.5l-3.1-2.4c-.9.6-2 .9-3.3.9-2.5 0-4.6-1.7-5.3-4h-3.2v2.5C5.1 19.8 8.3 22 12 22z" />
@@ -209,10 +209,18 @@ export function ReviewsCarousel() {
           <div className="flex flex-col items-center gap-2 text-stone-700">
             <StarRow />
             <div className="flex items-center gap-2">
-              <span className="text-base md:text-lg font-semibold">5.0/5</span>
-              <GoogleBadge />
+              <span className="text-base md:text-lg font-semibold">5.0/5.0</span>
+              <a
+                href="https://www.google.com/search?q=Inmobiliaria+Antonio+Oya+Mancha+Real"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-90 transition-opacity"
+                aria-label="Ver ficha de Google de Inmobiliaria Antonio Oya"
+              >
+                <GoogleBadge />
+              </a>
             </div>
-            <p className="text-base md:text-lg font-medium">+150 clientes satisfechos</p>
+            <p className="text-base md:text-lg font-medium">+80 clientes satisfechos</p>
           </div>
         </div>
 
@@ -235,7 +243,7 @@ export function ReviewsCarousel() {
                   <article className="card-hover h-full min-h-56 bg-white border border-stone-200 p-6 md:p-7 rounded-lg shadow-sm hover:shadow-lg">
                     <div className="flex items-center justify-between gap-3">
                       <StarRow />
-                      <span className="text-sm font-semibold text-stone-700">5.0/5</span>
+                      <span className="text-sm font-semibold text-stone-700">5.0/5.0</span>
                     </div>
                     <p className="text-stone-600 text-sm md:text-base leading-relaxed mt-4">"{review.text}"</p>
                     <p className="mt-6 text-stone-900 font-semibold">{review.name}</p>
