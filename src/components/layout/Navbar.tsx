@@ -28,7 +28,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
             <Image
-              src="/images/logo-AP.png"
+              src="/images/logo-Antonio-Oya.png"
               alt="AP Real Estate"
               width={140}
               height={36}

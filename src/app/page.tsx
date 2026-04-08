@@ -47,7 +47,7 @@ export default async function HomePage() {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/Hero-Almeria.jpg"
+            src="/images/Carrusel-1-Antonio.jpg"
             alt="Viviendas en Mancha Real, Jaén"
             fill
             className="object-cover"

@@ -13,7 +13,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <Image
-              src="/images/logo-AP.png"
+              src="/images/logo-Antonio-Oya.png"
               alt="Inmobiliaria Antonio Oya"
               width={230}
               height={52}

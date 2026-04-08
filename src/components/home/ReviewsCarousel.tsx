@@ -11,53 +11,48 @@ type Review = {
 const REVIEWS: Review[] = [
   {
     id: 1,
-    name: 'Gaby',
-    text: 'Una experiencia maravillosa a la hora de la contratación del piso. Un asesor excelente como Carlos no debería faltar en tu empresa. Recomendable al 100%.',
+    name: 'Mario Edgar Jose Hernando',
+    text: 'He comprado un piso guiado y asesorado por Antonio Oya y considero que su cercanía, profesionalidad y confianza están a la altura de una compra tan importante como una vivienda. Gracias.',
   },
   {
     id: 2,
-    name: 'Josefa Torres Piedra',
-    text: 'Mi experiencia con Carlos ha sido excepcional. Desde el primer contacto hasta la firma del contrato, fue profesional, amable y siempre dispuesto a responder mis preguntas. Encontró la propiedad perfecta para mis necesidades y facilitó todo el proceso.',
+    name: 'Julio Cobo',
+    text: 'Muy profesional, la excelencia en todo lo que hacen. Seriedad y honradez, de los pocos que quedan así. Siempre volvería a trabajar con ellos. Son de matrícula de honor.',
   },
   {
     id: 3,
-    name: 'Federico Sánchez',
-    text: 'Muy satisfecho con los servicios de Inmobiliaria Antonio Oya. Carlos es un profesional formal, servicial y honesto. Sin duda, confiaremos en él en el futuro.',
+    name: 'T.C.M.',
+    text: 'Muy buen profesional. Presupuesto sin sorpresas e información muy detallada y precisa. Servicio postventa también excelente. Lo recomiendo sin dudarlo.',
   },
   {
     id: 4,
-    name: 'Lola',
-    text: 'Buen profesional. Me resolvió el alquiler en días festivos. Total confianza. Seguiré utilizando sus servicios; lo recomiendo al 100%.',
+    name: 'Susana Zarza',
+    text: 'Increíble atención por parte de Antonio, buena puntualidad, simpatía y no dudo en ayudarnos para buscar lo que necesitábamos. El mejor agente inmobiliario de la zona. Mil gracias, Antonio.',
   },
   {
     id: 5,
-    name: 'Lu Soler',
-    text: 'Súper recomendable. Carlos es un profesional de los pies a la cabeza. Al principio, al hablar con él, pensé que podía ser una estafa por la rapidez al solucionar todo, e incluso estando él de vacaciones nos solucionó algunas cosillas. Sin más, un 10.',
+    name: 'Andrés',
+    text: 'Hemos confiado en ellos varias veces y solo decir que grandes profesionales. Ellos se encargan de todos los trámites sin tú tener que preocuparte de nada. Solo pedirles que necesitas y ellos lo encuentran.',
   },
   {
     id: 6,
-    name: 'Guille Plaza Góngora',
-    text: 'Carlos ha sido un gran descubrimiento. Siempre contaré con él cuando tenga que alquilar o vender un piso. Me ha encantado su responsabilidad, seriedad y profesionalidad. Desde el principio me causó muy buena impresión y, después de su trabajo bien realizado, he podido comprobar que no estaba equivocado. Felicidades.',
+    name: 'Polvoron 123',
+    text: 'Trato muy cercano y profesional, no solo se encargan de la compra, te acompañan en todo el proceso y se encargan de numerosos trámites agilizando todo. Gracias. 100% recomendable!!',
   },
   {
     id: 7,
-    name: 'Martha Yazmin Ríos Vargas',
-    text: 'Voy a ser sincera: después de ir a cinco inmobiliarias, quien mejor atención me dio fue esta empresa. Soy de fuera y no me era fácil encontrar el alquiler de un piso. Conocí a Carlos, quien hizo todo lo posible por encontrarme una vivienda que se adaptara a mis gustos y necesidades. Estoy muy agradecida con esta empresa y la recomiendo con total confianza.',
+    name: 'Angel Casas sanjuan',
+    text: 'Es una inmobiliaria de confianza. Me han vendido una casa, son rápidos y buscan a la familia que encaje en la vivienda que quieras vender, y se encargan de todo el papeleo. Un acierto sin duda alguna.',
   },
   {
     id: 8,
-    name: 'Michael Weldert',
-    text: 'Carlos es el mejor agente inmobiliario que uno puede esperar. Escuchó nuestras necesidades y nos mostró los mejores lugares. Se tomó el tiempo de responder todas nuestras preguntas y preocupaciones, y se aseguró de que estuviéramos cómodos durante el proceso. Incluso después del contrato, sigue ahí para ayudarnos. Sin duda, se ganó nuestra confianza.',
+    name: 'Nazaret Siles',
+    text: 'La mejor inmobiliaria sin dudas. Profesionales con un trato cercano. Se encargan de todos los trámites de la venta y solucionan al momento cualquier inconveniente "de papeleo" que surge durante la misma. Tantos años de experiencia en el trato con fincas e inmuebles son el mejor aval para que, tanto el comprador como el vendedor, depositen la confianza en esta inmobiliaria.',
   },
   {
     id: 9,
-    name: 'Ana Lucía Soto Zapata',
-    text: 'Negocio recomendable y transparente. Gestionaron el alquiler de mis habitaciones muy rápido y siempre manteniendo mis condiciones. Carlos sigue así, llegarás muy lejos: siempre honesto y sincero. No dudaré en volver a contactar con tu empresa. Muchísimas gracias por tus servicios.',
-  },
-  {
-    id: 10,
-    name: 'Migue Blanco',
-    text: '100% recomendable. El trato de Carlos ha sido magnífico, con seguimiento en todos los pasos a dar. Cualquier duda te la aclaraba en cada momento. Ciertamente, una muy buena experiencia.',
+    name: 'Magdalena Justicia Rodriguez',
+    text: 'La experiencia con ellos ha sido fantástica, son responsables, eficientes, resolutivos y muy pacientes con las dudas y preguntas que se nos crean en estas decisiones tan importantes. Solo tengo que darles las gracias por haber encontrado mi casita!!!!',
   },
 ]
 
@@ -76,6 +71,20 @@ function StarRow() {
         </svg>
       ))}
     </div>
+  )
+}
+
+function GoogleBadge() {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white px-3 py-1 text-xs font-medium text-stone-700">
+      <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+        <path fill="#EA4335" d="M12 10.2v3.9h5.4c-.2 1.2-.9 2.2-1.9 2.9v2.4h3.1c1.8-1.7 2.9-4.2 2.9-7.2 0-.7-.1-1.4-.2-2H12z" />
+        <path fill="#34A853" d="M12 22c2.6 0 4.8-.9 6.4-2.5l-3.1-2.4c-.9.6-2 .9-3.3.9-2.5 0-4.6-1.7-5.3-4h-3.2v2.5C5.1 19.8 8.3 22 12 22z" />
+        <path fill="#FBBC05" d="M6.7 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.5H3.5C2.9 8.8 2.5 10.4 2.5 12s.4 3.2 1 4.5L6.7 14z" />
+        <path fill="#4285F4" d="M12 6.3c1.4 0 2.6.5 3.6 1.4l2.7-2.7C16.8 3.6 14.6 2.8 12 2.8 8.3 2.8 5.1 5 3.5 8.5l3.2 2.5c.7-2.3 2.8-4 5.3-4z" />
+      </svg>
+      Google
+    </span>
   )
 }
 
@@ -199,6 +208,10 @@ export function ReviewsCarousel() {
           <h2 className="section-title mb-5">Nuestra prioridad: el cliente</h2>
           <div className="flex flex-col items-center gap-2 text-stone-700">
             <StarRow />
+            <div className="flex items-center gap-2">
+              <span className="text-base md:text-lg font-semibold">5.0/5</span>
+              <GoogleBadge />
+            </div>
             <p className="text-base md:text-lg font-medium">+150 clientes satisfechos</p>
           </div>
         </div>
@@ -220,7 +233,10 @@ export function ReviewsCarousel() {
               {loopedReviews.map((review, idx) => (
                 <div key={`${review.id}-${idx}`} className="shrink-0 w-[86vw] sm:w-[68vw] md:w-[44vw] lg:w-[31vw]">
                   <article className="card-hover h-full min-h-56 bg-white border border-stone-200 p-6 md:p-7 rounded-lg shadow-sm hover:shadow-lg">
-                    <StarRow />
+                    <div className="flex items-center justify-between gap-3">
+                      <StarRow />
+                      <span className="text-sm font-semibold text-stone-700">5.0/5</span>
+                    </div>
                     <p className="text-stone-600 text-sm md:text-base leading-relaxed mt-4">"{review.text}"</p>
                     <p className="mt-6 text-stone-900 font-semibold">{review.name}</p>
                   </article>
